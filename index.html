@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archels Jewelry - Timeless Elegance</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Archels</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#traditional">Traditional</a></li>
+                <li><a href="#western">Western</a></li>
+                <li><a href="#offers">Offers</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Landing Section -->
+    <section id="home" class="hero">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-image" style="background-image: url('https://images.unsplash.com/photo-1573408301185-9146fe634ad0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-image" style="background-image: url('https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-image" style="background-image: url('https://images.unsplash.com/photo-1584302179602-e4c3d3fd629d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')"></div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-control prev" onclick="prevSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-control next" onclick="nextSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1>Archels Jewelry</h1>
+            <p class="tagline">Timeless Elegance</p>
+            <a href="#traditional" class="cta-button">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Traditional Collection -->
+    <section id="traditional" class="collection-section">
+        <h2>Traditional Collection</h2>
+        <div class="jewelry-grid">
+            <div class="jewelry-item fade-in">
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Royal Necklace">
+                <div class="jewelry-info">
+                    <h3>Royal Necklace</h3>
+                    <p>Exquisite traditional necklace with intricate gold work</p>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Royal Necklace" class="order-button" target="_blank">Order Now</a>
+                </div>
+            </div>
+            <div class="jewelry-item fade-in">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Bridal Set">
+                <div class="jewelry-info">
+                    <h3>Bridal Set</h3>
+                    <p>Complete bridal jewelry set with matching pieces</p>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Bridal Set" class="order-button" target="_blank">Order Now</a>
+                </div>
+            </div>
+            <div class="jewelry-item fade-in">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Temple Jewelry">
+                <div class="jewelry-info">
+                    <h3>Temple Jewelry</h3>
+                    <p>Antique-inspired temple jewelry collection</p>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Temple Jewelry" class="order-button" target="_blank">Order Now</a>
+                </div>
+            </div>
+            <div class="jewelry-item fade-in">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Polki Set">
+                <div class="jewelry-info">
+                    <h3>Polki Set</h3>
+                    <p>Uncut diamond jewelry with traditional motifs</p>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Polki Set" class="order-button" target="_blank">Order Now</a>
+                </div>
+            </div>
+            <div class="jewelry-item fade-in">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Kundan Necklace">
+                <div class="jewelry-info">
+                    <h3>Kundan Necklace</h3>
+                    <p>Luxurious kundan work with precious stones</p>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Kundan Necklace" class="order-button" target="_blank">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Western Collection -->
+    <section id="western" class="collection-section">
+        <h2>Western Vibes</h2>
+        <div class="jewelry-grid">
+            <div class="jewelry-item fade-in">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Diamond Pendant">
+                <div class="jewelry-info">
+                    <h3>Diamond Pendant</h3>
+                    <p>Modern diamond pendant with minimalist design</p>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Diamond Pendant" class="order-button" target="_blank">Order Now</a>
+                </div>
+            </div>
+            <div class="jewelry-item fade-in">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Gold Chain">
+                <div class="jewelry-info">
+                    <h3>Gold Chain</h3>
+                    <p>Contemporary gold chain with unique pattern</p>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Gold Chain" class="order-button" target="_blank">Order Now</a>
+                </div>
+            </div>
+            <div class="jewelry-item fade-in">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Stack Rings">
+                <div class="jewelry-info">
+                    <h3>Stack Rings</h3>
+                    <p>Trendy stackable rings collection</p>
+                    <a href="https://wa.me/1234567890?text=I'm interested in Stack Rings" class="order-button" target="_blank">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="offers-section">
+        <div class="offer-banner">
+            <h2>Special Offer</h2>
+            <p class="discount">Flat 25% Off Today!</p>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span id="hours">24</span>
+                    <span>Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <span>Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <span>Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-slider">
+            <div class="review-card fade-in">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Sarah Johnson" class="reviewer-image">
+                <h3>Sarah Johnson</h3>
+                <div class="stars">★★★★★</div>
+                <p>The craftsmanship is exceptional. I'm in love with my new necklace!</p>
+            </div>
+            <div class="review-card fade-in">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Michael Chen" class="reviewer-image">
+                <h3>Michael Chen</h3>
+                <div class="stars">★★★★★</div>
+                <p>Best jewelry shopping experience. The quality is outstanding.</p>
+            </div>
+            <div class="review-card fade-in">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Priya Patel" class="reviewer-image">
+                <h3>Priya Patel</h3>
+                <div class="stars">★★★★★</div>
+                <p>Beautiful traditional pieces that exceeded my expectations.</p>
+            </div>
+            <div class="review-card fade-in">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Emma Wilson" class="reviewer-image">
+                <h3>Emma Wilson</h3>
+                <div class="stars">★★★★★</div>
+                <p>The attention to detail is remarkable. Highly recommended!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> info@archels.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Lane, Jewelry District</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#traditional">Traditional</a></li>
+                    <li><a href="#western">Western</a></li>
+                    <li><a href="#offers">Offers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Archels Jewelry. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html> 

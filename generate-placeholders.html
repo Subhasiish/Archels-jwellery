@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Placeholder Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .canvas-container {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #D4AF37;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #B8860B;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate Placeholder Images</h1>
+    <p>Click the buttons below to generate and download placeholder images for your jewelry website.</p>
+    
+    <div class="canvas-container">
+        <h2>Hero Images (1920x1080)</h2>
+        <button onclick="generateImage('hero1', 1920, 1080, 'Luxury Jewelry 1')">Generate Hero 1</button>
+        <button onclick="generateImage('hero2', 1920, 1080, 'Luxury Jewelry 2')">Generate Hero 2</button>
+        <button onclick="generateImage('hero3', 1920, 1080, 'Luxury Jewelry 3')">Generate Hero 3</button>
+    </div>
+
+    <div class="canvas-container">
+        <h2>Traditional Collection (800x800)</h2>
+        <button onclick="generateImage('traditional1', 800, 800, 'Royal Necklace')">Generate Traditional 1</button>
+        <button onclick="generateImage('traditional2', 800, 800, 'Bridal Set')">Generate Traditional 2</button>
+        <button onclick="generateImage('traditional3', 800, 800, 'Temple Jewelry')">Generate Traditional 3</button>
+        <button onclick="generateImage('traditional4', 800, 800, 'Polki Set')">Generate Traditional 4</button>
+        <button onclick="generateImage('traditional5', 800, 800, 'Kundan Necklace')">Generate Traditional 5</button>
+    </div>
+
+    <div class="canvas-container">
+        <h2>Western Collection (800x800)</h2>
+        <button onclick="generateImage('western1', 800, 800, 'Diamond Pendant')">Generate Western 1</button>
+        <button onclick="generateImage('western2', 800, 800, 'Gold Chain')">Generate Western 2</button>
+        <button onclick="generateImage('western3', 800, 800, 'Stack Rings')">Generate Western 3</button>
+    </div>
+
+    <div class="canvas-container">
+        <h2>Reviewer Images (200x200)</h2>
+        <button onclick="generateImage('reviewer1', 200, 200, 'Sarah')">Generate Reviewer 1</button>
+        <button onclick="generateImage('reviewer2', 200, 200, 'Michael')">Generate Reviewer 2</button>
+        <button onclick="generateImage('reviewer3', 200, 200, 'Priya')">Generate Reviewer 3</button>
+        <button onclick="generateImage('reviewer4', 200, 200, 'Emma')">Generate Reviewer 4</button>
+    </div>
+
+    <script>
+        function generateImage(name, width, height, text) {
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, '#D4AF37');
+            gradient.addColorStop(1, '#B8860B');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // Add text
+            ctx.fillStyle = 'white';
+            ctx.font = `${width/20}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, width/2, height/2);
+
+            // Add border
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = width/100;
+            ctx.strokeRect(width/20, height/20, width*0.9, height*0.9);
+
+            // Convert to image and download
+            const link = document.createElement('a');
+            link.download = `${name}.jpg`;
+            link.href = canvas.toDataURL('image/jpeg', 0.8);
+            link.click();
+        }
+    </script>
+</body>
+</html> 
