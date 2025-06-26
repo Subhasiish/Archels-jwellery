@@ -1,4 +1,5 @@
 {
+    "$schema": "https://openapi.vercel.sh/vercel.json",
     "version": 2,
     "name": "archels-jewelry",
     "builds": [
@@ -65,5 +66,10 @@
                 }
             ]
         }
-    ]
+    ],
+    "functions": {
+        "api/users/**/*.js": {
+            "maxDuration": 30
+        }
+    }
 } 
