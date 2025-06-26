@@ -3,7 +3,7 @@
     "name": "archels-jewelry",
     "builds": [
         {
-            "src": "*.html",
+            "src": "index.html",
             "use": "@vercel/static"
         },
         {
