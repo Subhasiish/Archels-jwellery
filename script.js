@@ -74,12 +74,11 @@ backToTopButton.addEventListener('click', () => {
 });
 
 // Countdown Timer
+let offerCountdownEnd = Date.now() + 2 * 60 * 60 * 1000; // 2 hours from now
+
 function updateCountdown() {
     const now = new Date();
-    const endOfDay = new Date();
-    endOfDay.setHours(23, 59, 59, 999);
-
-    const timeLeft = endOfDay - now;
+    const timeLeft = offerCountdownEnd - now;
     const hours = Math.floor(timeLeft / (1000 * 60 * 60));
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
@@ -87,9 +86,17 @@ function updateCountdown() {
     document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
     document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
     document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+    // Optionally, stop at zero
+    if (timeLeft <= 0) {
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        clearInterval(offerCountdownInterval);
+    }
 }
 
-setInterval(updateCountdown, 1000);
+const offerCountdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Scroll Animations
@@ -328,6 +335,61 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial call for elements already in view
     handleScrollAnimations();
     handleNavbarScroll();
+
+    // --- Reviews Slider Logic ---
+    startReviewSlider();
+    const prevBtn = document.querySelector('.reviews-control.prev');
+    const nextBtn = document.querySelector('.reviews-control.next');
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            showPrevReview();
+            startReviewSlider();
+        });
+        nextBtn.addEventListener('click', () => {
+            showNextReview();
+            startReviewSlider();
+        });
+    }
+
+    // Modern reviews carousel after contact
+    if (document.querySelector('.modern-reviews-slider')) {
+        startModernReviewSlider();
+        const prevBtn = document.querySelector('.modern-reviews-control.prev');
+        const nextBtn = document.querySelector('.modern-reviews-control.next');
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                showModernPrevReview();
+                startModernReviewSlider();
+            });
+            nextBtn.addEventListener('click', () => {
+                showModernNextReview();
+                startModernReviewSlider();
+            });
+        }
+    }
+
+    // Modern Reviews Carousel Sliding Logic
+    function scrollModernReviews(direction) {
+        const track = document.querySelector('.modern-reviews-carousel-track');
+        if (!track) return;
+        const card = track.querySelector('.review-card');
+        if (!card) return;
+        const cardWidth = card.offsetWidth + 24; // card width + gap
+        if (direction === 'left') {
+            track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const leftArrow = document.querySelector('.modern-reviews-arrow.left');
+        const rightArrow = document.querySelector('.modern-reviews-arrow.right');
+        if (leftArrow && rightArrow) {
+            leftArrow.addEventListener('click', () => scrollModernReviews('left'));
+            rightArrow.addEventListener('click', () => scrollModernReviews('right'));
+        }
+    });
 });
 
 // Performance optimization: Throttle scroll events
@@ -402,52 +464,6 @@ loadingStyle.textContent = `
 `;
 document.head.appendChild(loadingStyle);
 
-// Jewelry Items Data
-const traditionalItems = [
-    {
-        name: "Royal Necklace",
-        description: "Exquisite traditional necklace with intricate gold work",
-        image: "images/traditional1.jpg"
-    },
-    {
-        name: "Bridal Set",
-        description: "Complete bridal jewelry set with matching pieces",
-        image: "images/traditional2.jpg"
-    },
-    {
-        name: "Temple Jewelry",
-        description: "Antique-inspired temple jewelry collection",
-        image: "images/traditional3.jpg"
-    },
-    {
-        name: "Polki Set",
-        description: "Uncut diamond jewelry with traditional motifs",
-        image: "images/traditional4.jpg"
-    },
-    {
-        name: "Kundan Necklace",
-        description: "Luxurious kundan work with precious stones",
-        image: "images/traditional5.jpg"
-    }
-];
-
-const westernItems = [
-    {
-        name: "Diamond Pendant",
-        description: "Modern diamond pendant with minimalist design",
-        image: "images/western1.jpg"
-    },
-    {
-        name: "Gold Chain",
-        description: "Contemporary gold chain with unique pattern",
-        image: "images/western2.jpg"
-    },
-    {
-        name: "Stack Rings",
-        description: "Trendy stackable rings collection",
-        image: "images/western3.jpg"
-    }
-];
 
 // Populate Jewelry Items
 function createJewelryItem(item) {
@@ -468,101 +484,3 @@ document.querySelector('#traditional .jewelry-grid').innerHTML =
 
 document.querySelector('#western .jewelry-grid').innerHTML = 
     westernItems.map(createJewelryItem).join('');
-
-// --- Reviews Slider Logic ---
-const reviewData = [
-    {
-        name: "Sarah Johnson",
-        image: "images/WhatsApp Image 2025-06-24 at 11.46.07.jpeg",
-        rating: 5,
-        text: "The craftsmanship is exceptional. I'm in love with my new necklace! The attention to detail is remarkable and the quality exceeds my expectations."
-    },
-    {
-        name: "Michael Chen",
-        image: "images/WhatsApp Image 2025-06-24 at 11.46.07 (1).jpeg",
-        rating: 5,
-        text: "Best jewelry shopping experience. The quality is outstanding and the customer service is impeccable. Highly recommended!"
-    },
-    {
-        name: "Priya Patel",
-        image: "images/WhatsApp Image 2025-06-24 at 11.46.08.jpeg",
-        rating: 5,
-        text: "Beautiful traditional pieces that exceeded my expectations. The bridal set I purchased is absolutely stunning and perfect for my wedding."
-    },
-    {
-        name: "Emma Wilson",
-        image: "images/WhatsApp Image 2025-06-24 at 11.46.09 (1).jpeg",
-        rating: 5,
-        text: "The attention to detail is remarkable. Each piece tells a story and the quality is unmatched. I've become a loyal customer!"
-    }
-];
-
-let currentReview = 0;
-let reviewInterval;
-
-function renderReview(index) {
-    const review = reviewData[index];
-    const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
-    document.querySelector('.reviews-slider').innerHTML = `
-        <div class="review-card fade-in visible">
-            <div class="review-header">
-                <img src="${review.image}" alt="${review.name}" class="reviewer-image">
-                <div class="reviewer-info">
-                    <h3>${review.name}</h3>
-                    <div class="stars">${stars}</div>
-                </div>
-            </div>
-            <p>"${review.text}"</p>
-        </div>
-    `;
-}
-
-function showNextReview() {
-    currentReview = (currentReview + 1) % reviewData.length;
-    renderReview(currentReview);
-}
-
-function showPrevReview() {
-    currentReview = (currentReview - 1 + reviewData.length) % reviewData.length;
-    renderReview(currentReview);
-}
-
-function startReviewSlider() {
-    renderReview(currentReview);
-    if (reviewInterval) clearInterval(reviewInterval);
-    reviewInterval = setInterval(showNextReview, 5000);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Render first review and set up controls
-    startReviewSlider();
-    const prevBtn = document.querySelector('.reviews-control.prev');
-    const nextBtn = document.querySelector('.reviews-control.next');
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            showPrevReview();
-            startReviewSlider();
-        });
-        nextBtn.addEventListener('click', () => {
-            showNextReview();
-            startReviewSlider();
-        });
-    }
-});
-
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.jewelry-item, .review-card').forEach(element => {
-    observer.observe(element);
-}); 
