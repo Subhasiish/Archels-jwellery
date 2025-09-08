@@ -1,575 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archels Jewelry - Timeless Elegance</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Archels Jewelry</title>
+  <link rel="stylesheet" href="styles.css" />
+  <a href="pages/about.html" class="active">Products</a>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Archels</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#traditional">Traditional</a></li>
-                <li><a href="#western">Western</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#offers">Offers</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Archels</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="about.html">Products</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#offers">Offers</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-menu-btn"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active"><div class="carousel-image" style="background-image: url('images/ImT-4.jpeg');"></div></div>
+        <div class="carousel-item"><div class="carousel-image" style="background-image: url('images/ImT-5.jpeg');"></div></div>
+        <div class="carousel-item"><div class="carousel-image" style="background-image: url('images/ImT-6.jpeg');"></div></div>
+        <div class="carousel-item"><div class="carousel-image" style="background-image: url('images/ImT-7.jpeg');"></div></div>
+        <div class="carousel-item"><div class="carousel-image" style="background-image: url('images/ImT-8.jpeg');"></div></div>
+      </div>
+  
+      <div class="hero-content">
+        <h1>Elegance in Every Detail</h1>
+        <p class="tagline">Timeless Jewelry for Every Occasion</p>
+        <div class="hero-buttons">
+          <a href="about.html" class="cta-button primary">Explore Collection</a>
+          <a href="#offers" class="cta-button secondary">View Offers</a>
         </div>
-    </nav>
+      </div>
+    </div>
+  </section>
+  
+  
 
-    <!-- Landing Section -->
-    <section id="home" class="hero">
-        <div class="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="carousel-image" style="background-image: url('images/imT-1.jpeg')"></div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-image" style="background-image: url('images/ImT-2.jpeg')"></div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-image" style="background-image: url('images/ImT-3.jpeg')"></div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-image" style="background-image: url('images/ImT-4.jpeg')"></div>
-                </div>
-            </div>
-            <div class="carousel-controls">
-                <button class="carousel-control prev" onclick="prevSlide()">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-control next" onclick="nextSlide()">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="carousel-indicators">
-                <span class="indicator active" onclick="goToSlide(0)"></span>
-                <span class="indicator" onclick="goToSlide(1)"></span>
-                <span class="indicator" onclick="goToSlide(2)"></span>
-                <span class="indicator" onclick="goToSlide(3)"></span>
-            </div>
+  <!-- ===== Gallery Section ===== -->
+  <section id="gallery" class="section fade-in">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="grid gallery-grid">
+        <img src="images/ImT-9.jpeg" alt="Gallery 1">
+        <img src="images/ImT-10.jpeg" alt="Gallery 2">
+        <img src="images/ImT-11.jpeg" alt="Gallery 3">
+        <img src="images/ImT-12.jpeg" alt="Gallery 4">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== New Collections ===== -->
+  <section id="collections" class="section fade-in">
+    <div class="container">
+      <h2>New Collections</h2>
+      <div class="grid product-grid">
+        <div class="product-card">
+          <img src="images/ImT-13.jpeg" alt="New Necklace">
+          <h4>Diamond Necklace</h4>
         </div>
-        <div class="hero-content">
-            <h1>Archels Jewelry</h1>
-            <p class="tagline">Timeless Elegance, Modern Craftsmanship</p>
-            <p class="hero-description">Discover our exclusive collection of handcrafted jewelry that tells your unique story</p>
-            <div class="hero-buttons">
-                <a href="#traditional" class="cta-button primary">Explore Collection</a>
-                <a href="#gallery" class="cta-button secondary">View Gallery</a>
-            </div>
+        <div class="product-card">
+          <img src="images/ImT-14.jpeg" alt="New Earings">
+          <h4>Chic Earings</h4>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Archels</h2>
-                    <p class="about-description">For over three decades, Archels has been crafting exquisite jewelry that combines traditional artistry with contemporary design. Our master artisans bring decades of experience to create pieces that are not just accessories, but heirlooms to be treasured for generations.</p>
-                    <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-gem"></i>
-                            <h3>Premium Quality</h3>
-                            <p>Only the finest materials and gemstones</p>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-hands"></i>
-                            <h3>Handcrafted</h3>
-                            <p>Each piece is meticulously crafted by hand</p>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-certificate"></i>
-                            <h3>Certified</h3>
-                            <p>Certified quality by professionals</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="images/ImT-5.jpeg" alt="Archels Craftsmanship">
-                </div>
-            </div>
+        <div class="product-card">
+          <img src="images/ImT-15.jpeg" alt="New Bracelet">
+          <h4>Gold Bracelet</h4>
         </div>
-    </section>
-
-    <!-- Traditional Collection -->
-    <section id="traditional" class="collection-section modern-small-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Traditional Collection</h2>
-                <p>Timeless pieces that celebrate our rich cultural heritage</p>
-            </div>
-            <div class="jewelry-grid small-grid">
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-21.jpeg" alt="Royal Necklace" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Royal Necklace</h3>
-                        <p>Exquisite traditional necklace with intricate gold work and precious stones</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Royal Necklace" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-27.jpeg" alt="Bridal Set" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Bridal Set</h3>
-                        <p>Complete bridal jewelry set with matching necklace, earrings, and bangles</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Bridal Set" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-20.jpeg" alt="Temple Jewelry" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Temple Jewelry</h3>
-                        <p>Antique-inspired temple jewelry with traditional motifs and designs</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Temple Jewelry" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-19.jpeg" alt="Polki Set" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Polki Set</h3>
-                        <p>Uncut diamond jewelry with traditional motifs and gold work</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Polki Set" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-10.jpeg" alt="Kundan Necklace" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Kundan Necklace</h3>
-                        <p>Luxurious kundan work with precious stones and intricate detailing</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Kundan Necklace" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-11.jpeg" alt="Traditional Earrings" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Traditional Earrings</h3>
-                        <p>Elegant traditional earrings with gold work and stone embellishments</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Traditional Earrings" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-38.jpeg" alt="Antique Bangles" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Antique Bangles</h3>
-                        <p>Classic antique bangles with intricate patterns and gold finish</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Antique Bangles" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-34.jpeg" alt="Heritage Maang Tikka" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Heritage Maang Tikka</h3>
-                        <p>Traditional maang tikka with heritage design and stonework</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Heritage Maang Tikka" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="product-card">
+          <img src="images/ImT-16.jpeg" alt="New Ring">
+          <h4>Elegant Ring</h4>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Western Collection -->
-    <section id="western" class="collection-section western-section modern-small-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Western Collection</h2>
-                <p>Contemporary designs for the modern woman</p>
-            </div>
-            <div class="jewelry-grid small-grid">
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-15.jpeg" alt="Diamond Pendant" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Diamond Pendant</h3>
-                        <p>Modern diamond pendant with minimalist design and elegant setting</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Diamond Pendant" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-49.jpeg" alt="Gold Chain" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Gold Chain</h3>
-                        <p>Contemporary gold chain with unique pattern and modern appeal</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Gold Chain" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-17.jpeg" alt="Stack Rings" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Stack Earings</h3>
-                        <p>Trendy stackable rings collection perfect for everyday wear</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Stack Rings" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-18.jpeg" alt="Diamond earrings" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Diamond earrings</h3>
-                        <p>Contemporary necklace design with geometric patterns</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Modern Necklace" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-39.jpeg" alt="Elegant Bracelet" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Elegant Earings</h3>
-                        <p>Sophisticated bracelet with delicate design and premium finish</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Elegant Bracelet" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-40.jpeg" alt="Designer Earrings" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Designer Earrings</h3>
-                        <p>Unique designer earrings with contemporary styling</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Designer Earrings" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-32.jpeg" alt="Minimalist Anklet" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Minimalist Anklet</h3>
-                        <p>Chic minimalist anklet for a modern, subtle look</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Minimalist Anklet" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                <div class="jewelry-card small-card fade-in">
-                    <div class="small-image-wrapper">
-                        <img src="images/ImT-52.jpeg" alt="Pearl Drop Earrings" class="small-image">
-                    </div>
-                    <div class="small-info">
-                        <h3>Pearl Drop Earrings</h3>
-                        <p>Elegant pearl drop earrings with a western twist</p>
-                        <a href="https://wa.me/917974436318?text=I'm interested in Pearl Drop Earrings" class="small-order-btn" target="_blank" title="Order on WhatsApp">
-                            <i class="fab fa-whatsapp"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-                </div>
-            </div>
+  <!-- ===== Offers Section ===== -->
+  <section id="offers" class="section fade-in">
+    <div class="container">
+      <h2>Special Offers</h2>
+      <p>Limited time discounts on exclusive collections.</p>
+      <div class="countdown">
+        <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section id="contact" class="section fade-in">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>We’d love to hear from you.</p>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit" class="cta-button primary">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h3>Archels</h3>
+        <p>Elegance in Every Detail</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="about.html">Products</a></li>
+          <li><a href="#offers">Offers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 Archels. All Rights Reserved.</div>
+  </footer>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Gallery</h2>
-                <p>Explore our stunning collection of handcrafted jewelry</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-24.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-25.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-26.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-27.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-28.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-29.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-30.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-31.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-32.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-33.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-34.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-35.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-36.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-37.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-38.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-39.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-40.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-41.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-42.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-43.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-44.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-45.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-46.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-47.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-48.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-49.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-50.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-51.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-52.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-53.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-54.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-55.jpeg" alt="Jewelry Collection">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/ImT-32.jpeg" alt="Jewelry Collection">
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Floating Buttons -->
+  <a href="https://wa.me/1234567890" class="whatsapp-button"><i class="fab fa-whatsapp"></i></a>
+  <div id="backToTop" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></div>
 
-    <!-- Offers Section -->
-    <section id="offers" class="offers-section">
-        <div class="container">
-            <div class="offer-banner">
-                <div class="offer-content">
-                    <h2>Special Offer</h2>
-                    <p class="discount">Flat 25% Off Today!</p>
-                    <p class="offer-description">On all traditional jewelry collections. Limited time offer.</p>
-                    <div class="countdown">
-                        <div class="countdown-item">
-                            <span id="hours">24</span>
-                            <span>Hours</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span id="minutes">00</span>
-                            <span>Minutes</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span id="seconds">00</span>
-                            <span>Seconds</span>
-                        </div>
-                    </div>
-                    <a href="https://wa.me/917974436318?text=I want to avail the 25% discount offer" class="offer-button" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Claim Offer Now
-                    </a>
-                </div>
-                <div class="offer-image">
-                    <img src="images/ImT-32.jpeg" alt="Special Offer">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get In Touch</h2>
-                <p>We'd love to hear from you</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Visit Us</h3>
-                            <p>Durga Colony, Guna, Madhya Pradesh 473001, India</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Call Us</h3>
-                            <p>+91 7974436318</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3>Email Us</h3>
-                            <p>archelsjewels@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h3>Business Hours</h3>
-                            <p>Monday - Saturday: 10:00 AM - 8:00 PM<br>Sunday: 11:00 AM - 6:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-image">
-                    <img src="images/ImT-34.jpeg" alt="Archels Store">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Archels</h3>
-                    <p>Timeless elegance meets modern craftsmanship. Your trusted partner for exquisite jewelry.</p>
-                    <div class="social-icons">
-                        <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
-                        <a href="https://www.instagram.com/archels_._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                        <!-- <a href="#"><i class="fab fa-pinterest"></i></a> -->
-                        <!-- <a href="#"><i class="fab fa-youtube"></i></a> -->
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#traditional">Traditional</a></li>
-                        <li><a href="#western">Western</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Collections</h3>
-                    <ul>
-                        <li><a href="#traditional">Bridal Sets</a></li>
-                        <li><a href="#traditional">Temple Jewelry</a></li>
-                        <li><a href="#western">Diamond Jewelry</a></li>
-                        <li><a href="#western">Gold Chains</a></li>
-                        <li><a href="#gallery">Designer Pieces</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <p><i class="fas fa-phone"></i> +91 7974436318</p>
-                    <p><i class="fas fa-envelope"></i> archelsjewels@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Durga Colony, Guna, MP</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Archels Jewelry. All rights reserved. | Crafted with ❤️ in India | made by shuvorasoftwares</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/917974436318" class="whatsapp-button" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
-</html> 
+</html>
