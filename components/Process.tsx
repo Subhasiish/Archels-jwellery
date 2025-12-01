@@ -108,7 +108,7 @@ export default function Process() {
         </motion.div>
 
         {/* Process Steps Container - Sticky scroll with 3D cards */}
-        <div className="relative" style={{ minHeight: '320vh' }}>
+        <div className="relative" style={{ minHeight: '230vh' }}>
           {/* Step 1 - Fixed/Visible Initially */}
           <div
             style={{
