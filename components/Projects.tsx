@@ -118,7 +118,7 @@ export default function Projects() {
   // Combine auto-scroll with scroll-based parallax
   const combinedX = useTransform(
     [autoScrollX, parallaxX],
-    ([auto, parallax]) => auto + parallax
+    ([auto, parallax]: number[]) => (auto || 0) + (parallax || 0)
   )
 
   // Handle scroll wheel interaction
