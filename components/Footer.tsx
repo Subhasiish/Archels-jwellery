@@ -3,7 +3,7 @@ import { Mail } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className="bg-white rounded-b-2xl border-t border-gray-300 text-black">
-      <div className="max-w-full px-6 md:px-16 pt-10 pb-0 grid grid-cols-1 md:grid-cols-3 gap-12 min-h-[350px] relative">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pt-10 pb-0 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 min-h-[260px] relative">
         {/* Left Section */}
         <div>
           {/* Logo symbol (replace with SVG if available) */}
@@ -58,9 +58,11 @@ export default function Footer() {
         </div>
       </div>
       {/* Giant SHUUVORA text */}
-      <div className="w-full text-[min(16vw,170px)] md:text-[min(32vw,350px)] font-light tracking-tighter overflow-hidden text-black leading-none select-none pointer-events-none text-center">
-  Shuuvora
-</div>
+      <div className="w-full py-6 md:py-8 flex items-center justify-center">
+        <div className="text-[clamp(4rem,18vw,9rem)] font-light tracking-tighter text-black leading-none select-none pointer-events-none text-center">
+          Shuuvora
+        </div>
+      </div>
 
       {/* Footer bottom bar */}
       <div className="w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-3 border-t border-gray-300 text-xs text-gray-600 bg-white">

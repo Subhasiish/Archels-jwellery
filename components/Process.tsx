@@ -8,40 +8,51 @@ const processSteps = [
   {
     number: '01.',
     title: 'Discovery & Strategy',
-    description: 'We dive deep into your vision, understanding your goals, audience, and market to craft a strategic roadmap for success.',
+    description:
+      'We dive deep into your vision, understanding your goals, audience, and market to craft a strategic roadmap for success.',
   },
   {
     number: '02.',
-    title: 'Discovery & Strategy',
-    description: 'We dive deep into your vision, understanding your goals, audience, and market to craft a strategic roadmap for success.',
+    title: 'Design & Build',
+    description:
+      'Our designers and engineers work in sync to prototype, iterate, and develop experiences that feel refined, fast, and future-ready.',
   },
   {
     number: '03.',
-    title: 'Discovery & Strategy',
-    description: 'We dive deep into your vision, understanding your goals, audience, and market to craft a strategic roadmap for success.',
+    title: 'Launch & Elevate',
+    description:
+      'We deploy, measure, and continuously optimise your product so it keeps performing long after launch day.',
   },
 ]
 
 export default function Process() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   })
 
-  // Transform scroll progress for each step
-  // Step 1: visible from start, stays fixed
-  // Step 2: slides up from bottom between 0.25-0.5 of scroll
-  // Step 3: slides up from bottom between 0.5-0.75 of scroll
-  const step2Y = useTransform(scrollYProgress, [0.25, 0.5], [100, 0])
+  // Transform scroll progress for each step (for sticky cards)
+  const step2Y = useTransform(scrollYProgress, [0.25, 0.5], [120, 0])
   const step2Opacity = useTransform(scrollYProgress, [0.25, 0.35], [0, 1])
-  
-  const step3Y = useTransform(scrollYProgress, [0.5, 0.75], [100, 0])
+
+  const step3Y = useTransform(scrollYProgress, [0.5, 0.75], [120, 0])
   const step3Opacity = useTransform(scrollYProgress, [0.5, 0.6], [0, 1])
 
+  // Background rail glow responds to scroll
+  const railScale = useTransform(scrollYProgress, [0, 1], [0.8, 1.1])
+
   return (
-    <section ref={containerRef} className="relative bg-black py-20 md:py-32 w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={containerRef} className="relative bg-black py-20 md:py-32 w-full overflow-hidden">
+      {/* Vertical glowing rail behind cards */}
+      <motion.div
+        className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 hidden md:block"
+        style={{ scaleY: railScale }}
+      >
+        <div className="w-px h-full bg-gradient-to-b from-amber-400/0 via-amber-400/50 to-amber-400/0" />
+      </motion.div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* OUR PROCESS Heading */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -96,8 +107,8 @@ export default function Process() {
           </div>
         </motion.div>
 
-        {/* Process Steps Container - Sticky Scroll Effect */}
-        <div className="relative" style={{ minHeight: '400vh' }}>
+        {/* Process Steps Container - Sticky scroll with 3D cards */}
+        <div className="relative" style={{ minHeight: '320vh' }}>
           {/* Step 1 - Fixed/Visible Initially */}
           <div
             style={{
@@ -107,20 +118,10 @@ export default function Process() {
             }}
             className="mb-8"
           >
-            <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16">
+            <ProcessCard step={processSteps[0]}>
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 {/* Left Side - Text Content */}
-                <div>
-                  <p className="text-gray-400 text-sm md:text-base mb-4 font-light">
-                    {processSteps[0].number}
-                  </p>
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6">
-                    {processSteps[0].title}
-                  </h3>
-                  <p className="text-black text-base md:text-lg leading-relaxed font-light">
-                    {processSteps[0].description}
-                  </p>
-                </div>
+                <ProcessText step={processSteps[0]} />
 
                 {/* Right Side - Tablet Image */}
                 <div className="relative">
@@ -157,7 +158,7 @@ export default function Process() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ProcessCard>
           </div>
 
           {/* Step 2 - Slides up from bottom and overlaps Step 1 */}
@@ -171,19 +172,9 @@ export default function Process() {
             }}
             className="mb-8"
           >
-            <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16">
+            <ProcessCard step={processSteps[1]}>
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div>
-                  <p className="text-gray-400 text-sm md:text-base mb-4 font-light">
-                    {processSteps[1].number}
-                  </p>
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6">
-                    {processSteps[1].title}
-                  </h3>
-                  <p className="text-black text-base md:text-lg leading-relaxed font-light">
-                    {processSteps[1].description}
-                  </p>
-                </div>
+                <ProcessText step={processSteps[1]} />
                 <div className="relative">
                   <div className="absolute -bottom-4 -right-4 w-full h-full bg-amber-900/20 rounded-2xl blur-xl"></div>
                   <div className="relative bg-gray-800 rounded-2xl p-3 md:p-4 shadow-2xl">
@@ -218,7 +209,7 @@ export default function Process() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ProcessCard>
           </motion.div>
 
           {/* Step 3 - Slides up from bottom and overlaps Step 2 */}
@@ -232,19 +223,9 @@ export default function Process() {
             }}
             className="mb-8"
           >
-            <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16">
+            <ProcessCard step={processSteps[2]}>
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div>
-                  <p className="text-gray-400 text-sm md:text-base mb-4 font-light">
-                    {processSteps[2].number}
-                  </p>
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6">
-                    {processSteps[2].title}
-                  </h3>
-                  <p className="text-black text-base md:text-lg leading-relaxed font-light">
-                    {processSteps[2].description}
-                  </p>
-                </div>
+                <ProcessText step={processSteps[2]} />
                 <div className="relative">
                   <div className="absolute -bottom-4 -right-4 w-full h-full bg-amber-900/20 rounded-2xl blur-xl"></div>
                   <div className="relative bg-gray-800 rounded-2xl p-3 md:p-4 shadow-2xl">
@@ -279,17 +260,17 @@ export default function Process() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ProcessCard>
           </motion.div>
         </div>
 
-        {/* Bottom Footer Statement */}
+        {/* Bottom Footer Statement - appears right after last card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-20 text-center"
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="mt-10 md:mt-14 text-center"
         >
           <p
             className="text-white text-xl md:text-2xl lg:text-3xl italic"
@@ -303,5 +284,49 @@ export default function Process() {
         </motion.div>
       </div>
     </section>
+  )
+}
+
+type ProcessStep = (typeof processSteps)[number]
+
+function ProcessCard({
+  step,
+  children,
+}: {
+  step: ProcessStep
+  children: React.ReactNode
+}) {
+  return (
+    <motion.div
+      className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 shadow-[0_28px_70px_rgba(0,0,0,0.6)]"
+      initial={{ opacity: 0.9, rotateY: -6, translateY: 20 }}
+      whileInView={{ opacity: 1, rotateY: 0, translateY: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ rotateX: -5, rotateY: 6, translateY: -10 }}
+      transition={{ duration: 0.6, type: 'spring', stiffness: 170, damping: 20 }}
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      <div className="relative">
+        {/* Step badge in corner */}
+        <div className="absolute -top-6 right-0 flex items-center gap-2 text-xs md:text-sm text-amber-600 font-medium tracking-[0.25em] uppercase">
+          <span className="h-px w-8 bg-amber-500" />
+          <span>{step.number}</span>
+        </div>
+        {children}
+      </div>
+    </motion.div>
+  )
+}
+
+function ProcessText({ step }: { step: ProcessStep }) {
+  return (
+    <div>
+      <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6">
+        {step.title}
+      </h3>
+      <p className="text-black text-base md:text-lg leading-relaxed font-light">
+        {step.description}
+      </p>
+    </div>
   )
 }

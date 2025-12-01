@@ -13,6 +13,8 @@ import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import Projects from '@/components/Projects'
+import AISolutions from '@/components/AISolutions'
+import BrandingStudios from '@/components/BrandingStudios'
 import Link from "next/link"
 import DetailedPricing from './detailed-pricing'
 
@@ -26,6 +28,8 @@ export default function Home() {
       <Process />
       <Stats />
       <Pricing />
+      <AISolutions />
+      <BrandingStudios />
       <DetailedPricing />
       <Projects />
       <Testimonials />

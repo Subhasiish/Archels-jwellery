@@ -55,158 +55,200 @@ const testimonials = [
   },
 ]
 
+type Testimonial = (typeof testimonials)[number]
+
 export default function Testimonials() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement | null>(null)
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: sectionRef,
     offset: ['start end', 'end start'],
   })
 
-  // Transform vertical scroll to horizontal movement
-  // Scroll down = move left to right (content moves from left to right)
-  // Scroll up = move right to left (content moves from right to left)
-  // Start at left (negative) and move to right (positive) as user scrolls down
-  const x = useTransform(scrollYProgress, [0, 1], ['-100%', '100%'])
+  // Subtle background glow that responds to scroll
+  const glowOpacity = useTransform(scrollYProgress, [0, 1], [0, 0.7])
 
   return (
-    <section 
-      ref={containerRef} 
-      className="bg-gray-100 relative overflow-hidden"
-      style={{ minHeight: '300vh' }} // Make section tall enough for scroll interaction
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className="relative py-20 md:py-28 bg-black overflow-hidden"
     >
-      <div className="sticky top-0 h-screen w-full flex items-center">
-        {/* Section Header - Fixed Position */}
-        <div className="absolute top-8 left-0 right-0 z-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-xs md:text-sm uppercase tracking-widest font-light text-gray-600 mb-4">
-              Testimonials
-            </h2>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <h3 className="text-3xl md:text-5xl font-bold text-black">
-                Visitors about our cabin
-              </h3>
-              <p className="text-sm md:text-base text-gray-600 max-w-md">
-                Find the Perfect Solution for Your Every Need
-              </p>
+      {/* Animated background glow */}
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        style={{ opacity: glowOpacity }}
+      >
+        <div className="absolute -top-32 -left-24 w-72 h-72 md:w-96 md:h-96 bg-purple-500/25 blur-3xl rounded-full" />
+        <div className="absolute bottom-[-6rem] right-[-4rem] w-80 h-80 md:w-[22rem] md:h-[22rem] bg-amber-400/25 blur-3xl rounded-full" />
+      </motion.div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-10 md:mb-14"
+        >
+          <p className="text-[10px] md:text-xs tracking-[0.35em] uppercase text-white/50 mb-3">
+            Testimonials
+          </p>
+          <h2 className="text-2xl md:text-4xl lg:text-[2.6rem] font-semibold text-white leading-tight">
+            What our clients say
+            <br className="hidden md:block" /> about working with Shuuvora.
+          </h2>
+        </motion.div>
+
+        {/* Desktop / large screen 3D cards */}
+        <div className="relative">
+          <div className="hidden md:flex justify-center space-x-8 lg:space-x-10">
+            {testimonials.slice(0, 3).map((testimonial, index) => (
+              <DesktopTestimonialCard
+                key={testimonial.id}
+                testimonial={testimonial}
+                index={index}
+              />
+            ))}
+          </div>
+
+          {/* Mobile / tablet horizontal scroll */}
+          <div className="md:hidden -mx-4 px-4 overflow-x-auto scrollbar-hide">
+            <div className="flex gap-4 snap-x snap-mandatory pb-2">
+              {testimonials.map((testimonial, index) => (
+                <MobileTestimonialCard
+                  key={testimonial.id}
+                  testimonial={testimonial}
+                  index={index}
+                />
+              ))}
             </div>
           </div>
         </div>
-
-        {/* Horizontal Scrolling Container - Full Viewport */}
-        <div className="w-full h-full overflow-hidden">
-          <motion.div
-            className="flex h-full w-full"
-            style={{ x }}
-          >
-              {testimonials.map((testimonial, index) => (
-                <TestimonialCard 
-                  key={testimonial.id} 
-                  testimonial={testimonial} 
-                  index={index}
-                  isCenter={index === 0}
-                />
-              ))}
-              {/* Duplicate for seamless loop */}
-              {testimonials.map((testimonial, index) => (
-                <TestimonialCard 
-                  key={`dup-${testimonial.id}`} 
-                  testimonial={testimonial} 
-                  index={index + testimonials.length}
-                  isCenter={false}
-                />
-              ))}
-            </motion.div>
-          </div>
       </div>
     </section>
   )
 }
 
-function TestimonialCard({ 
-  testimonial, 
-  index, 
-  isCenter 
-}: { 
-  testimonial: typeof testimonials[0]; 
-  index: number; 
-  isCenter: boolean;
+function DesktopTestimonialCard({
+  testimonial,
+  index,
+}: {
+  testimonial: Testimonial
+  index: number
 }) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ['start end', 'end start'],
-  })
-
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9])
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.5, 1, 1, 0.5])
-
   return (
     <motion.div
-      ref={cardRef}
-      className={`flex-shrink-0 w-screen h-full relative ${
-        isCenter ? 'bg-white' : 'bg-gray-200'
-      }`}
-      style={{ scale, opacity }}
-      whileHover={{ scale: 1.02, zIndex: 10 }}
-      transition={{ duration: 0.3 }}
+      className="relative w-full max-w-sm lg:max-w-md snap-center"
+      initial={{ opacity: 0, y: 30, rotateY: -8 }}
+      whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, delay: index * 0.12 }}
     >
-      {/* Background Image - Full Fill */}
-      <div className="absolute inset-0 w-full h-full">
-        <Image
-          src={testimonial.image}
-          alt={testimonial.name}
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority={index < 2}
-        />
-        {/* Overlay for readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
-      </div>
+      <div className="relative [perspective:1200px]">
+        <motion.div
+          whileHover={{ rotateX: -6, rotateY: 8, translateY: -10 }}
+          transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+          className="relative rounded-3xl bg-white/5 border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.7)] overflow-hidden backdrop-blur-xl"
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          {/* Top accent bar */}
+          <div className="h-1.5 bg-gradient-to-r from-amber-400 via-purple-500 to-sky-400" />
 
-      {/* Content Overlay */}
-      <div className="relative z-10 h-full flex flex-col justify-center p-8 md:p-12 lg:p-16">
-        <div className="max-w-4xl mx-auto w-full">
-          {/* Profile Section */}
-          <div className="flex items-center mb-8 md:mb-12">
-            <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden mr-6 flex-shrink-0 border-4 border-white">
+          <div className="p-6 md:p-7 lg:p-8 flex flex-col gap-6">
+            {/* Avatar + name */}
+            <div className="flex items-center gap-4">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border border-white/40">
+                <Image
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  fill
+                  className="object-cover"
+                  sizes="64px"
+                />
+              </div>
+              <div>
+                <p className="text-white font-semibold text-sm md:text-base">
+                  {testimonial.name}
+                </p>
+                <p className="text-xs md:text-sm text-white/60">
+                  {testimonial.location}
+                </p>
+              </div>
+            </div>
+
+            {/* Quote */}
+            <div className="relative">
+              <div className="absolute -top-6 -left-2 text-5xl text-white/10 font-serif">
+                “
+              </div>
+              <p className="relative text-sm md:text-[0.95rem] leading-relaxed text-white/80">
+                {testimonial.content}
+              </p>
+            </div>
+
+            {/* Footer line */}
+            <div className="flex items-center justify-between pt-2 text-[11px] md:text-xs text-white/50">
+              <span className="uppercase tracking-[0.22em]">
+                Client #{testimonial.number}
+              </span>
+              <span className="h-px flex-1 mx-3 bg-white/15" />
+              <span>Shuuvora Studio</span>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  )
+}
+
+function MobileTestimonialCard({
+  testimonial,
+  index,
+}: {
+  testimonial: Testimonial
+  index: number
+}) {
+  return (
+    <motion.div
+      className="relative min-w-[82%] max-w-xs snap-center"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+    >
+      <div className="rounded-3xl bg-white/5 border border-white/10 shadow-[0_18px_45px_rgba(0,0,0,0.7)] overflow-hidden backdrop-blur-xl">
+        <div className="h-1 bg-gradient-to-r from-amber-400 via-purple-500 to-sky-400" />
+        <div className="p-5 flex flex-col gap-4">
+          <div className="flex items-center gap-3">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border border-white/40">
               <Image
                 src={testimonial.image}
                 alt={testimonial.name}
                 fill
                 className="object-cover"
-                sizes="96px"
+                sizes="48px"
               />
             </div>
-            <div className="flex-1">
-              <h4 className="font-bold text-2xl md:text-3xl text-white mb-2">
+            <div>
+              <p className="text-white font-semibold text-sm">
                 {testimonial.name}
-              </h4>
-              <p className="text-base md:text-lg text-white/80">
+              </p>
+              <p className="text-[11px] text-white/60">
                 {testimonial.location}
               </p>
             </div>
-            <div className="text-4xl md:text-5xl font-bold text-white/30">
-              |{testimonial.number}|
-            </div>
           </div>
 
-          {/* Content */}
-          <div className="relative mb-8">
-            <div className="absolute -top-8 -left-8 text-9xl md:text-[12rem] text-white/20 font-serif">
-              "
-            </div>
-            <p className="text-xl md:text-2xl lg:text-3xl text-white relative z-10 leading-relaxed font-light">
-              {testimonial.content}
-            </p>
-          </div>
+          <p className="text-xs leading-relaxed text-white/80">
+            {testimonial.content}
+          </p>
 
-          {/* First Badge */}
-          {isCenter && (
-            <div className="inline-block px-6 py-3 bg-orange-500 text-white text-sm md:text-base font-semibold rounded-full">
-              FIRST
-            </div>
-          )}
+          <div className="flex justify-between items-center pt-1 text-[10px] text-white/50">
+            <span>Client #{testimonial.number}</span>
+            <span className="h-px flex-1 mx-2 bg-white/15" />
+            <span>Shuuvora</span>
+          </div>
         </div>
       </div>
     </motion.div>
