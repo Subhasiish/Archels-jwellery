@@ -75,7 +75,7 @@ export default function Stats() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16 md:mb-20"
         >
-          <p
+          {/* <p
             className="text-white text-xl md:text-2xl lg:text-3xl italic"
             style={{
               fontFamily: 'Georgia, "Times New Roman", serif',
@@ -83,7 +83,7 @@ export default function Stats() {
             }}
           >
             Turning ideas into impactful digital realities.
-          </p>
+          </p> */}
         </motion.div>
 
         {/* Stats Columns */}
