@@ -1,332 +1,161 @@
-'use client'
+ 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
+import { Search, Compass, Feather, PenTool, Code, TestTube, Rocket, TrendingUp } from 'lucide-react'
+import { useState } from 'react'
 
-const processSteps = [
-  {
-    number: '01.',
-    title: 'Discovery & Strategy',
-    description:
-      'We dive deep into your vision, understanding your goals, audience, and market to craft a strategic roadmap for success.',
-  },
-  {
-    number: '02.',
-    title: 'Design & Build',
-    description:
-      'Our designers and engineers work in sync to prototype, iterate, and develop experiences that feel refined, fast, and future-ready.',
-  },
-  {
-    number: '03.',
-    title: 'Launch & Elevate',
-    description:
-      'We deploy, measure, and continuously optimise your product so it keeps performing long after launch day.',
-  },
+const STEPS = [
+  { id: 'discover', title: 'Discover', icon: Compass, blurb: 'Clarify goals, users, and success metrics.' },
+  { id: 'research', title: 'Research', icon: Search, blurb: 'Market & competitor insights that inform decisions.' },
+  { id: 'strategy', title: 'Strategy', icon: Feather, blurb: 'Roadmaps and prioritized initiatives for growth.' },
+  { id: 'design', title: 'Design', icon: PenTool, blurb: 'High-fidelity UI & UX focused on conversion.' },
+  { id: 'build', title: 'Build', icon: Code, blurb: 'Robust engineering for performance and scale.' },
+  { id: 'qa', title: 'QA', icon: TestTube, blurb: 'Automated & manual testing to ensure quality.' },
+  { id: 'launch', title: 'Launch', icon: Rocket, blurb: 'Fast, measured launches with data tracking.' },
+  { id: 'optimize', title: 'Optimize', icon: TrendingUp, blurb: 'Iterate based on metrics to increase ROI.' },
 ]
 
 export default function Process() {
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
+  const [active, setActive] = useState(STEPS[0].id)
 
-  // Transform scroll progress for each step (for sticky cards)
-  const step2Y = useTransform(scrollYProgress, [0.25, 0.5], [120, 0])
-  const step2Opacity = useTransform(scrollYProgress, [0.25, 0.35], [0, 1])
-
-  const step3Y = useTransform(scrollYProgress, [0.5, 0.75], [120, 0])
-  const step3Opacity = useTransform(scrollYProgress, [0.5, 0.6], [0, 1])
-
-  // Background rail glow responds to scroll
-  const railScale = useTransform(scrollYProgress, [0, 1], [0.8, 1.1])
+  const activeStep = STEPS.find((s) => s.id === active) || STEPS[0]
 
   return (
-    <section ref={containerRef} className="relative bg-black py-20 md:py-32 w-full overflow-hidden">
-      {/* Vertical glowing rail behind cards */}
-      <motion.div
-        className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 hidden md:block"
-        style={{ scaleY: railScale }}
-      >
-        <div className="w-px h-full bg-gradient-to-b from-amber-400/0 via-amber-400/50 to-amber-400/0" />
-      </motion.div>
+    <section className="relative bg-black py-16 md:py-28 w-full overflow-hidden">
+      {/* decorative blobs */}
+      <div className="pointer-events-none absolute -left-40 -top-40 w-96 h-96 rounded-full bg-gradient-to-br from-[#8c52ff]/20 to-[#4c1d95]/6 blur-3xl opacity-30" />
+      <div className="pointer-events-none absolute -right-40 -bottom-40 w-96 h-96 rounded-full bg-gradient-to-br from-white/6 to-[#8c52ff]/6 blur-3xl opacity-20" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* OUR PROCESS Heading */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="text-white text-xs md:text-sm uppercase tracking-widest font-light">
-            OUR PROCESS
-          </p>
-        </motion.div>
-
-        {/* Hero Section - "From Idea to Execution" */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative rounded-2xl overflow-hidden mb-16 h-[400px] md:h-[500px] lg:h-[600px]"
-        >
-          {/* Background Image with Blur Effect */}
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-orange-900/40 to-yellow-900/40"
-            style={{
-              backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'800\' height=\'600\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3ClinearGradient id=\'a\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23f59e0b;stop-opacity:0.3\'/%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23d97706;stop-opacity:0.3\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'800\' height=\'600\' fill=\'url(%23a)\'/%3E%3C/svg%3E")',
-              filter: 'blur(2px)',
-            }}
-          />
-          
-          {/* Overlay Content */}
-          <div className="relative z-10 h-full flex flex-col justify-between p-8 md:p-12">
-            {/* Top Section */}
-            <div className="flex justify-between items-start">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white">
-                From Idea to Execution
-              </h2>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-black px-6 py-3 rounded-lg font-semibold flex items-center space-x-2 hover:bg-gray-100 transition-all"
-              >
-                <span>LEARN MORE</span>
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </div>
-
-            {/* Bottom Section */}
-            <p className="text-white text-base md:text-lg lg:text-xl max-w-2xl font-light">
-              Our proven methodology ensures every project is delivered with precision, creativity, and measurable results that exceed expectations.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Process Steps Container - Sticky scroll with 3D cards */}
-        <div className="relative" style={{ minHeight: '230vh' }}>
-          {/* Step 1 - Fixed/Visible Initially */}
-          <div
-            style={{
-              position: 'sticky',
-              top: 0,
-              zIndex: 30,
-            }}
-            className="mb-8"
-          >
-            <ProcessCard step={processSteps[0]}>
-              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                {/* Left Side - Text Content */}
-                <ProcessText step={processSteps[0]} />
-
-                {/* Right Side - Tablet Image */}
-                <div className="relative">
-                  <div className="absolute -bottom-4 -right-4 w-full h-full bg-amber-900/20 rounded-2xl blur-xl"></div>
-                  <div className="relative bg-gray-800 rounded-2xl p-3 md:p-4 shadow-2xl">
-                    <div className="relative bg-black rounded-lg overflow-hidden aspect-[4/3]">
-                      <div className="w-full h-full bg-black p-4 md:p-6 flex flex-col">
-                        <div className="flex-1 flex flex-col justify-center relative">
-                          <div className="relative mb-8">
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                              MORA LAMP
-                            </h1>
-                            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
-                              <div className="relative">
-                                <div className="w-12 h-24 bg-gray-700 rounded-t-full"></div>
-                                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-20 h-20 bg-yellow-400/30 rounded-full blur-xl"></div>
-                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-12 bg-yellow-300 rounded-full"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-end">
-                            <p className="text-white text-sm md:text-base">
-                              Elevate your space with elegance and smart technology.
-                            </p>
-                            <div className="flex flex-col space-y-2 text-right">
-                              <div className="text-white text-xs">Smart Control</div>
-                              <div className="text-white text-xs">Ambiance Modes</div>
-                              <div className="text-white text-xs">Energy Efficient</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ProcessCard>
-          </div>
-
-          {/* Step 2 - Slides up from bottom and overlaps Step 1 */}
-          <motion.div
-            style={{
-              position: 'sticky',
-              top: 0,
-              zIndex: 20,
-              y: step2Y,
-              opacity: step2Opacity,
-            }}
-            className="mb-8"
-          >
-            <ProcessCard step={processSteps[1]}>
-              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <ProcessText step={processSteps[1]} />
-                <div className="relative">
-                  <div className="absolute -bottom-4 -right-4 w-full h-full bg-amber-900/20 rounded-2xl blur-xl"></div>
-                  <div className="relative bg-gray-800 rounded-2xl p-3 md:p-4 shadow-2xl">
-                    <div className="relative bg-black rounded-lg overflow-hidden aspect-[4/3]">
-                      <div className="w-full h-full bg-black p-4 md:p-6 flex flex-col">
-                        <div className="flex-1 flex flex-col justify-center relative">
-                          <div className="relative mb-8">
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                              MORA LAMP
-                            </h1>
-                            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
-                              <div className="relative">
-                                <div className="w-12 h-24 bg-gray-700 rounded-t-full"></div>
-                                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-20 h-20 bg-yellow-400/30 rounded-full blur-xl"></div>
-                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-12 bg-yellow-300 rounded-full"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-end">
-                            <p className="text-white text-sm md:text-base">
-                              Elevate your space with elegance and smart technology.
-                            </p>
-                            <div className="flex flex-col space-y-2 text-right">
-                              <div className="text-white text-xs">Smart Control</div>
-                              <div className="text-white text-xs">Ambiance Modes</div>
-                              <div className="text-white text-xs">Energy Efficient</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ProcessCard>
-          </motion.div>
-
-          {/* Step 3 - Slides up from bottom and overlaps Step 2 */}
-          <motion.div
-            style={{
-              position: 'sticky',
-              top: 0,
-              zIndex: 10,
-              y: step3Y,
-              opacity: step3Opacity,
-            }}
-            className="mb-8"
-          >
-            <ProcessCard step={processSteps[2]}>
-              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <ProcessText step={processSteps[2]} />
-                <div className="relative">
-                  <div className="absolute -bottom-4 -right-4 w-full h-full bg-amber-900/20 rounded-2xl blur-xl"></div>
-                  <div className="relative bg-gray-800 rounded-2xl p-3 md:p-4 shadow-2xl">
-                    <div className="relative bg-black rounded-lg overflow-hidden aspect-[4/3]">
-                      <div className="w-full h-full bg-black p-4 md:p-6 flex flex-col">
-                        <div className="flex-1 flex flex-col justify-center relative">
-                          <div className="relative mb-8">
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                              MORA LAMP
-                            </h1>
-                            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
-                              <div className="relative">
-                                <div className="w-12 h-24 bg-gray-700 rounded-t-full"></div>
-                                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-20 h-20 bg-yellow-400/30 rounded-full blur-xl"></div>
-                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-12 bg-yellow-300 rounded-full"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-end">
-                            <p className="text-white text-sm md:text-base">
-                              Elevate your space with elegance and smart technology.
-                            </p>
-                            <div className="flex flex-col space-y-2 text-right">
-                              <div className="text-white text-xs">Smart Control</div>
-                              <div className="text-white text-xs">Ambiance Modes</div>
-                              <div className="text-white text-xs">Energy Efficient</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ProcessCard>
-          </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <p className="text-[#8c52ff] text-xs uppercase tracking-widest font-semibold">OUR PROCESS</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mt-3">Designed for speed, built for growth</h2>
+          <p className="text-white/70 mt-3 max-w-3xl">A modern delivery flow with clear milestones and polished handoffs — crafted to move fast while reducing risk.</p>
         </div>
 
-        {/* Bottom Footer Statement - appears right after last card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mt-10 md:mt-14 text-center"
-        >
-          <p
-            className="text-white text-xl md:text-2xl lg:text-3xl italic"
-            style={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontStyle: 'italic',
-            }}
-          >
-            Turning ideas into impactful digital realities.
-          </p>
+        {/* Step rail */}
+        <div className="relative">
+          <div className="overflow-x-auto scrollbar-hide py-6 -mx-4 px-4">
+            <div className="flex gap-6 items-stretch align-bottom">
+              {STEPS.map((step, idx) => {
+                const Icon = step.icon
+                const activeIndex = STEPS.findIndex((s) => s.id === active)
+                const isActive = step.id === active
+                const distance = Math.abs(idx - activeIndex)
+                return (
+                  <motion.button
+                    key={step.id}
+                    onClick={() => setActive(step.id)}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`flex-shrink-0 w-[240px] sm:w-[260px] md:w-[300px] p-5 rounded-3xl transition-all duration-300 ${isActive ? 'bg-gradient-to-b from-[#12021a] to-[#0b0710] ring-2 ring-[#8c52ff] shadow-xl' : 'bg-[#07040f]'} flex flex-col justify-between`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <div className="text-sm text-white/60">Step {String(idx + 1).padStart(2, '0')}</div>
+                        <h3 className={`text-lg md:text-xl mt-2 font-semibold ${isActive ? 'text-white' : 'text-white/90'}`}>{step.title}</h3>
+                      </div>
+                      <div className={`flex items-center justify-center w-12 h-12 rounded-full ${isActive ? 'bg-[#8c52ff] text-black' : 'bg-white/6 text-white/80'}`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                    </div>
+
+                    <p className={`mt-3 text-sm ${isActive ? 'text-white' : 'text-white/70'} line-clamp-3`}>{step.blurb}</p>
+
+                    <div className="mt-4 flex items-center justify-between">
+                      <div className="text-xs text-white/60">Est. time</div>
+                      <div className={`text-sm font-semibold ${isActive ? 'text-white' : 'text-white/90'}`}>{estimateFor(step.id)}</div>
+                    </div>
+                  </motion.button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Progress line (visual) */}
+          <div className="hidden md:block absolute left-0 right-0 top-1/2 transform -translate-y-1/2 pointer-events-none">
+            <div className="mx-auto max-w-6xl h-1 bg-white/4 rounded-full" />
+          </div>
+        </div>
+
+        {/* Detail panel */}
+        <motion.div key={activeStep.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="mt-8 bg-gradient-to-br from-[#07040f] to-[#09050a] border border-white/6 rounded-3xl p-6 md:p-8 shadow-2xl">
+          <div className="md:flex md:items-center md:justify-between gap-6">
+            <div className="md:flex-1">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-lg bg-[#8c52ff] flex items-center justify-center text-black text-lg font-bold">{activeStep.title.charAt(0)}</div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-white">{activeStep.title}</h3>
+                  <p className="text-white/70 mt-2 max-w-2xl">{activeStep.blurb} We focus on measurable outcomes, rapid feedback, and polished handoffs so your product ships with confidence.</p>
+                </div>
+              </div>
+
+              <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-white/80 text-sm">
+                {benefitsFor(activeStep.id).map((b, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-2.5 h-2.5 rounded-full mt-1 bg-[#8c52ff]" />
+                    <div>{b}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-4 md:mt-0 md:flex-shrink-0">
+              <div className="bg-gradient-to-br from-white/6 to-white/2 p-4 rounded-2xl text-center">
+                <div className="text-xs text-white/60">Typical timeline</div>
+                <div className="text-2xl font-extrabold text-white mt-2">{estimateFor(activeStep.id)}</div>
+                <a href="#contact" className="mt-4 inline-block bg-[#8c52ff] text-black px-4 py-2 rounded-lg font-semibold">Book this phase</a>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
   )
 }
 
-type ProcessStep = (typeof processSteps)[number]
-
-function ProcessCard({
-  step,
-  children,
-}: {
-  step: ProcessStep
-  children: React.ReactNode
-}) {
-  return (
-    <motion.div
-      className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 shadow-[0_28px_70px_rgba(0,0,0,0.6)]"
-      initial={{ opacity: 0.9, rotateY: -6, translateY: 20 }}
-      whileInView={{ opacity: 1, rotateY: 0, translateY: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ rotateX: -5, rotateY: 6, translateY: -10 }}
-      transition={{ duration: 0.6, type: 'spring', stiffness: 170, damping: 20 }}
-      style={{ transformStyle: 'preserve-3d' }}
-    >
-      <div className="relative">
-        {/* Step badge in corner */}
-        <div className="absolute -top-6 right-0 flex items-center gap-2 text-xs md:text-sm text-amber-600 font-medium tracking-[0.25em] uppercase">
-          <span className="h-px w-8 bg-amber-500" />
-          <span>{step.number}</span>
-        </div>
-        {children}
-      </div>
-    </motion.div>
-  )
+function estimateFor(id: string) {
+  switch (id) {
+    case 'discover':
+      return '1–2 weeks'
+    case 'research':
+      return '1–2 weeks'
+    case 'strategy':
+      return '1 week'
+    case 'design':
+      return '2–4 weeks'
+    case 'build':
+      return '4–12 weeks'
+    case 'qa':
+      return '1–2 weeks'
+    case 'launch':
+      return '1 week'
+    case 'optimize':
+      return 'Ongoing'
+    default:
+      return 'Varies'
+  }
 }
 
-function ProcessText({ step }: { step: ProcessStep }) {
-  return (
-    <div>
-      <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6">
-        {step.title}
-      </h3>
-      <p className="text-black text-base md:text-lg leading-relaxed font-light">
-        {step.description}
-      </p>
-    </div>
-  )
+function benefitsFor(id: string) {
+  switch (id) {
+    case 'discover':
+      return ['Clear goals & KPIs', 'Stakeholder alignment']
+    case 'research':
+      return ['User insights', 'Opportunity mapping']
+    case 'strategy':
+      return ['Prioritized roadmap', 'Success metrics']
+    case 'design':
+      return ['Conversion-focused UI', 'Prototype & test']
+    case 'build':
+      return ['Production-ready code', 'Scalable architecture']
+    case 'qa':
+      return ['Automated tests', 'Regression checks']
+    case 'launch':
+      return ['Analytics setup', 'Rollout plan']
+    case 'optimize':
+      return ['A/B tests', 'Growth experiments']
+    default:
+      return []
+  }
 }

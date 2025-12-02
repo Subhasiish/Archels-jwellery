@@ -2,12 +2,17 @@ import { Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-white rounded-b-2xl border-t border-gray-300 text-black">
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pt-10 pb-0 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 min-h-[260px] relative">
+    <footer className="relative bg-white rounded-t-3xl rounded-b-2xl border-t border-gray-300 text-black overflow-hidden">
+      {/* Top links — static on small screens (will stack), absolute top-right on md+ */}
+      
+
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 min-h-[560px] relative z-30">
+        {/* Left overlay to prevent background text showing under left content on larger screens */}
+        {/* <div className="hidden md:block absolute left-0 top-0 w-[420px] h-full bg-white z-20 rounded-t-3xl pointer-events-none" /> */}
         {/* Left Section */}
-        <div>
+        <div className="self-start">
           {/* Logo symbol (replace with SVG if available) */}
-          <div className="mb-3">
+          <div className="mb-3 mt-2">
             <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2">
               <line x1="12" y1="2" x2="12" y2="22" />
               <line x1="6" y1="2" x2="18" y2="2" />
@@ -37,40 +42,38 @@ export default function Footer() {
           </form>
         </div>
 
-        {/* Middle Section (Links) */}
-        <div className="md:col-span-1 flex flex-col mt-4 md:mt-0">
-          <div className="border-b border-black mb-1"></div>
-          <div className="mb-2">Shuuvora Studios</div>
-          <div className="border-b border-black mb-1"></div>
-          <div className="mb-2">Shuuvora Times</div>
-          <div className="border-b border-black mb-1"></div>
-          <div>Shuuvora</div>
-        </div>
-
-        {/* Right Section (Contact/Info) */}
-        <div className="md:col-span-1 text-sm flex flex-col gap-2 mt-8 md:mt-0">
-          <div className="border-b border-black mb-1"></div>
-          <div className="mb-2">hello@shuuvoratech.com</div>
-          <div className="border-b border-black mb-1"></div>
-          <div className="mb-2">+1 (555) 123-4567</div>
-          <div className="border-b border-black mb-1"></div>
-          <div>123 Innovation Drive, Tech City, TC 12345</div>
+        {/* Right: responsive links/contact — static (stack) on small, absolute on md+ */}
+        <div className="mt-6 md:mt-0 md:absolute md:top-8 md:right-10 z-30 flex flex-col md:flex-row md:items-start gap-6">
+          <nav className="flex flex-col md:flex-row gap-4 md:gap-6 text-sm">
+            <a href="#" className="text-black/80 hover:text-[#8c52ff] hover:underline">Shuuvora Studios</a>
+            <a href="#" className="text-black/80 hover:text-[#8c52ff] hover:underline">Shuuvora Times</a>
+            <a href="#" className="text-black/80 hover:text-[#8c52ff] hover:underline">Shuuvora</a>
+          </nav>
+          <div className="flex flex-col text-sm text-black/80">
+            <a href="mailto:hello@shuuvoratech.com" className="hover:text-[#8c52ff] hover:underline">hello@shuuvoratech.com</a>
+            <a href="tel:+15551234567" className="mt-2 hover:text-[#8c52ff] hover:underline">+1 (555) 123-4567</a>
+          </div>
         </div>
       </div>
-      {/* Giant SHUUVORA text */}
-      <div className="w-full py-10 md:py-12 lg:py-16 flex items-center justify-center">
-        <div className="text-[clamp(5rem,25vw,12rem)] font-bold tracking-tighter text-black leading-none select-none pointer-events-none text-center px-4">
-          Shuuvora
+
+      
+
+      {/* Giant SHUUVORA text centered and full-width */}
+      <div className="absolute inset-x-0 top-[62%] -translate-y-1/2 z-0 pointer-events-none">
+        <div className="w-full text-center">
+          <div className="text-[clamp(6rem,20vw,18rem)] font-extrabold tracking-tight leading-none select-none" style={{ color: 'rgba(0,0,0,0.12)' }}>Shuuvora</div>
         </div>
       </div>
 
       {/* Footer bottom bar */}
-      <div className="w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-3 border-t border-gray-300 text-xs text-gray-600 bg-white">
-        <div>@2025 Shuuvora Tech. All rights reserved.</div>
-        <div>
-          Privacy Policy | Terms &amp; Conditions | Cookies
+      <div className="w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-3 border-t border-gray-300 text-xs text-gray-600 bg-white relative z-20">
+        <div>@2025 Shuuvoratech. All rights reserved.</div>
+        <div className="flex items-center gap-4">
+          <a href="#" className="text-gray-600 hover:text-[#8c52ff] hover:underline">Privacy Policy</a>
+          <a href="#" className="text-gray-600 hover:text-[#8c52ff] hover:underline">Terms &amp; Conditions</a>
+          <a href="#" className="text-gray-600 hover:text-[#8c52ff] hover:underline">Cookies</a>
         </div>
       </div>
     </footer>
-  );
+  )
 }
