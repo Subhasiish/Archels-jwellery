@@ -1,13 +1,20 @@
 'use client'
 
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Hero() {
   const purpleBoxRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
+
+  // Scroll animation
+  const { scrollY } = useScroll()
+  const titleScale = useTransform(scrollY, [0, 600], [0.7, 0.08])
+  const titleYPosition = useTransform(scrollY, [0, 600], [-100, -300])
+  const titleOpacity = useTransform(scrollY, [0, 600], [1, 0.3])
 
   // Motion values for 3D interaction
   const x = useMotionValue(0)
@@ -58,29 +65,44 @@ export default function Hero() {
   }, [x, y])
 
   return (
-    <section id="home" className="relative min-h-screen bg-black overflow-hidden pt-20 flex items-center justify-center">
-      {/* Main Headline - Spanning Left to Right Corner of Hero Section, Outside Square */}
+    <section id="home" ref={sectionRef} className="relative min-h-screen bg-black overflow-hidden pt-20 flex items-center justify-center">
+      {/* Main Headline - Full Width, Scroll Animation */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 1 }}
-        className="absolute left-0 right-0 text-center z-30 w-full px-4 sm:px-6 lg:px-8"
+        className="fixed left-0 right-0 z-40 w-full text-center pointer-events-none"
         style={{
-          top: 'calc(50vh)',
+          top: '50%',
           transform: 'translateY(-50%)',
         }}
       >
-        <span
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white block w-full"
+        {/* Purple glow effect behind text */}
+        <motion.div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-40 md:w-[600px] md:h-64 rounded-full bg-[#8c52ff] blur-3xl opacity-0 pointer-events-none"
           style={{
-            fontFamily: 'var(--font-grotesk), "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif',
-            fontWeight: 700,
-            letterSpacing: '-0.03em',
-            textShadow: '0 0 40px rgba(0, 0, 0, 0.5), 0 0 80px rgba(139, 92, 246, 0.3)',
+            scale: titleScale,
+            y: titleYPosition,
+            opacity: useTransform(titleOpacity, (o) => o * 0.15),
+          }}
+        />
+        
+        <motion.span
+          className="text-[8vw] sm:text-[10vw] md:text-[12vw] lg:text-[15vw] xl:text-[18vw] font-bold text-white block w-full px-2 relative whitespace-nowrap"
+          style={{
+            scale: titleScale,
+            y: titleYPosition,
+            opacity: titleOpacity,
+            fontFamily: '"Glock Grotesk", "Founders Grotesk X-Condensed", var(--font-grotesk), "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif',
+            fontWeight: 900,
+            letterSpacing: '-0.05em',
+            textShadow: '0 0 30px rgba(140, 82, 255, 0.4), 0 0 60px rgba(140, 82, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.1)',
+            transformOrigin: 'center center',
+            lineHeight: '1',
           }}
         >
           Shuuvora Tech.
-        </span>
+        </motion.span>
       </motion.h1>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -237,7 +259,7 @@ export default function Hero() {
                 rotate: 90,
               }}
               whileTap={{ scale: 0.9 }}
-              className="absolute bottom-8 right-8 md:bottom-12 md:right-12 w-14 h-14 md:w-16 md:h-16 rounded-full bg-white text-black flex items-center justify-center z-30 shadow-xl hover:shadow-2xl transition-all group"
+              className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 lg:bottom-12 lg:right-12 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-white text-black flex items-center justify-center z-30 shadow-xl hover:shadow-2xl transition-all group"
               style={{
                 boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2)',
                 transform: `translateZ(50px)`,
@@ -262,7 +284,7 @@ export default function Hero() {
                 className="relative z-10"
                 whileHover={{ scale: 1.1 }}
               >
-                <ArrowRight className="w-6 h-6 md:w-7 md:h-7" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
               </motion.div>
             </motion.button>
 

@@ -10,7 +10,9 @@ import Stats from '@/components/Stats'
 import Testimonials from '@/components/Testimonials'
 import Pricing from '@/components/Pricing'
 import CTA from '@/components/CTA'
+import Eyes from '@/components/Eyes'
 import Footer from '@/components/Footer'
+import Marquee from '@/components/Marquee'
 import Navbar from '@/components/Navbar'
 import Projects from '@/components/Projects'
 import AISolutions from '@/components/AISolutions'
@@ -34,6 +36,10 @@ export default function Home() {
       <Projects />
       <Testimonials />
       <CTA />
+      <div className="hidden lg:block">
+        <Eyes />
+      </div>
+      <Marquee />
       <Footer />
     </main>
   )

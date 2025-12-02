@@ -58,8 +58,8 @@ export default function Footer() {
         </div>
       </div>
       {/* Giant SHUUVORA text */}
-      <div className="w-full py-6 md:py-8 flex items-center justify-center">
-        <div className="text-[clamp(4rem,18vw,9rem)] font-light tracking-tighter text-black leading-none select-none pointer-events-none text-center">
+      <div className="w-full py-10 md:py-12 lg:py-16 flex items-center justify-center">
+        <div className="text-[clamp(5rem,25vw,12rem)] font-bold tracking-tighter text-black leading-none select-none pointer-events-none text-center px-4">
           Shuuvora
         </div>
       </div>
