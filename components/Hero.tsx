@@ -104,7 +104,7 @@ export default function Hero() {
                 animate={{ scale: [1, 1.03, 1], rotate: [0, 0.5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
               >
-                Shuuvora Tech
+                Shuuvora Tech.
               </motion.h2>
             </motion.div>
 
