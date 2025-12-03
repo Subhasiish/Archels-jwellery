@@ -104,7 +104,7 @@ export default function Process() {
               <div className="bg-gradient-to-br from-white/6 to-white/2 p-4 rounded-2xl text-center">
                 <div className="text-xs text-white/60">Typical timeline</div>
                 <div className="text-2xl font-extrabold text-white mt-2">{estimateFor(activeStep.id)}</div>
-                <a href="#contact" className="mt-4 inline-block bg-[#8c52ff] text-black px-4 py-2 rounded-lg font-semibold">Book this phase</a>
+                {/* <a href="#contact" className="mt-4 inline-block bg-[#8c52ff] text-black px-4 py-2 rounded-lg font-semibold">Book this phase</a> */}
               </div>
             </div>
           </div>
