@@ -77,7 +77,7 @@ export default function Pricing() {
               className={`rounded-2xl p-6 md:p-8 relative overflow-hidden border ${plan.highlighted ? 'border-[#8c52ff]' : 'border-white/10'} bg-[#07040f]`}
             >
               {plan.highlighted && (
-                <div className="absolute -top-3 right-3 bg-[#8c52ff] text-black px-3 py-1 rounded-full text-sm font-semibold">Popular</div>
+                <div className="absolute -top-1 right-3 bg-[#8c52ff] text-black px-3 py-1 rounded-full text-sm font-semibold">Popular</div>
               )}
 
               {/* Header */}
