@@ -54,9 +54,21 @@ export default function AboutUs() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="max-w-md mb-8"
         >
-          <p className="text-white text-base md:text-lg leading-relaxed font-light">
-            At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don't just meet today's needs—they anticipate tomorrow's possibilities.
-          </p>
+           <p className="text-white text-base md:text-lg leading-relaxed font-light max-w-6xl mb-6">
+        Shuuvora Tech is a premium technology, software, and AI innovation company delivering
+        next-level digital experiences. We help startups, companies, and enterprises modernize
+        their systems with scalable, secure and intelligent digital solutions. From branding to
+        design, development to automation—our team builds solutions that improve performance,
+        increase revenue, and unlock long-term digital success.
+      </p>
+
+      <ul className="list-disc pl-6">
+        <li>Innovation-led digital transformation</li>
+        <li>Future-ready technology with strong engineering</li>
+        <li>Consistent performance and long-term support</li>
+        <li>AI-powered tools designed for real business growth</li>
+        <li>Customer-first, transparent, and reliable</li>
+      </ul>
         </motion.div>
 
         {/* CTA Button */}
