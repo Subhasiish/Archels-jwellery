@@ -48,7 +48,7 @@ const services = [
     image: '/images/mlm-4.jpg',
   },
   {
-    id: 'mlm-5',
+    id: 'mlm-6',
     buttonText: 'MLM',
     title: 'MLM Strategy',
     description: 'At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don\'t just meet today\'s needs—they anticipate tomorrow\'s possibilities.',

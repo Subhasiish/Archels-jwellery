@@ -8,7 +8,7 @@ const projects = [
   {
     id: 1,
     title: 'Architecture Innovation',
-    image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&h=800&fit=crop',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=800&fit=crop',
     description: 'Shaping the Future of Architecture, Innovation in Every Structure.',
     size: 'big' // big
   },

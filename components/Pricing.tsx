@@ -1,4 +1,4 @@
-'use client'
+ 'use client'
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
@@ -7,10 +7,10 @@ const plans = [
   {
     number: '01.',
     name: 'Gold Plan',
-    price: '40k',
+    price: '30k',
     currency: 'INR',
     features: [
-      'Website Design',
+      'Custom website Design',
       'Regular Updates',
       'Custom Coded Website',
     ],
@@ -22,10 +22,11 @@ const plans = [
     price: '60k',
     currency: 'INR',
     features: [
-      'Custom Website Design',
+      'Custom future Website',
       'Regular Update & Meetings',
       'Custom Coded Website',
       '4-5 Integrations',
+      'Backend Support',
     ],
     highlighted: true,
   },
@@ -35,7 +36,7 @@ const plans = [
     price: '80k',
     currency: 'INR',
     features: [
-      'Custom Website Design',
+      'Custom Website & Design',
       'Regular Update & Meetings',
       'Custom Coded Website',
       '4-5 Integrations',

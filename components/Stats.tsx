@@ -5,19 +5,19 @@ import { useRef, useEffect, useState } from 'react'
 
 const stats = [
   {
-    value: 20,
+    value: 17,
     suffix: '+',
     title: 'Clients Worldwide',
     description: 'Trusted by brands and businesses across the globe.',
   },
   {
-    value: 30,
+    value: 35,
     suffix: '+',
     title: 'Websites Delivered',
     description: 'Successfully crafted and launched numerous digital experiences.',
   },
   {
-    value: 12,
+    value: 7,
     suffix: '+',
     title: 'Years of Experience',
     description: 'Successfully crafted and launched numerous digital experiences.',
