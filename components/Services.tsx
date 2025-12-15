@@ -131,14 +131,14 @@ export default function Services() {
             <p className="text-white text-base md:text-lg leading-relaxed font-light mb-8">
               {selectedService.description}
             </p>
-            <motion.button
+            {/* <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-transparent text-white border-2 border-white px-6 py-3 rounded-full font-semibold flex items-center space-x-2 hover:bg-white hover:text-black transition-all"
             >
               <span>VIEW MORE</span>
               <ArrowRight className="w-5 h-5" />
-            </motion.button>
+            </motion.button> */}
           </motion.div>
 
           {/* Right Column - Tablet Image */}
