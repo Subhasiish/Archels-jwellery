@@ -155,21 +155,21 @@ export default function AIDemoChatbot() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black flex flex-col items-center justify-center py-12 px-2">
+    <main className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black flex flex-col items-center justify-center py-6 px-1 sm:py-10 sm:px-2 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       {/* Back Button outside chatbox */}
-      <div className="w-full max-w-md mb-4">
+      <div className="w-full max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mb-4 px-2 sm:px-0">
         <Link href="/ai" className="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium transition-colors bg-white rounded-full px-4 py-2 shadow">
           <svg className="h-5 w-5 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
           Back
         </Link>
       </div>
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-purple-400/30 flex flex-col overflow-hidden">
+      <div className="w-full max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white rounded-3xl shadow-2xl border border-purple-400/30 flex flex-col overflow-hidden mx-auto px-0 sm:px-0">
         {/* Header */}
         <div className="bg-gradient-to-r from-purple-500 via-purple-400 to-purple-600 text-black px-6 py-3 font-bold flex items-center justify-between text-lg tracking-wide">
           <span>Shuuvora AI</span>
         </div>
         {/* Messages */}
-        <div className="flex-1 p-4 overflow-y-auto space-y-3 text-base h-80 custom-scrollbar bg-white">
+        <div className="flex-1 p-2 sm:p-4 overflow-y-auto space-y-3 text-base h-72 sm:h-80 bg-white scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {messages.map((m, i) => (
             <div key={i} className={`flex ${m.from === "user" ? "justify-end" : "justify-start"}`}>
               <span
@@ -189,15 +189,15 @@ export default function AIDemoChatbot() {
           <div ref={bottomRef} />
         </div>
         {/* Input */}
-        <form onSubmit={sendMessage} className="p-3 border-t border-purple-400/20 flex gap-2 bg-white">
+        <form onSubmit={sendMessage} className="p-2 sm:p-3 border-t border-purple-400/20 flex gap-2 bg-white">
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
             placeholder="Type a message..."
-            className="flex-1 px-4 py-2 rounded-full bg-white text-black border border-purple-400/30 outline-none text-base"
+            className="flex-1 px-3 sm:px-4 py-2 rounded-full bg-white text-black border border-purple-400/30 outline-none text-base min-w-0"
             autoFocus
           />
-          <button className="bg-gradient-to-r from-purple-500 to-purple-500 text-black px-6 py-2 rounded-full font-bold shadow hover:from-purple-500 hover:to-purple-400 transition">
+          <button className="bg-gradient-to-r from-purple-500 to-purple-500 text-black px-4 sm:px-6 py-2 rounded-full font-bold shadow hover:from-purple-500 hover:to-purple-400 transition whitespace-nowrap">
             Send
           </button>
         </form>
