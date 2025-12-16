@@ -84,7 +84,7 @@ export default function AIPage() {
           transition={{ delay: 0.4, duration: 0.7 }}
           className="mb-12 w-full flex flex-col items-center"
         >
-          <AIDemoChatbot />
+          <Link href="/ai/chatbot" className="inline-block px-6 py-3 rounded-full border border-purple-400 text-purple-300 bg-black/40 hover:bg-purple-400 hover:text-black font-semibold text-lg shadow transition-colors">Try our AI Chatbot Demo →</Link>
         </motion.div>
 
         {/* Services grid */}
@@ -133,118 +133,4 @@ export default function AIPage() {
     </main>
   );
 
-// Interactive AI Demo Chatbot (fun, not real AI)
-function AIDemoChatbot() {
-  const [mounted, setMounted] = React.useState(false);
-  const [messages, setMessages] = React.useState<{ from: string; text: string }[]>([]);
-  const [input, setInput] = React.useState("");
-  React.useEffect(() => {
-    setMounted(true);
-    setMessages([{ from: "ai", text: "Hi! I’m your AI assistant. Ask me anything about AI!" }]);
-  }, []);
-  function sendMessage(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!input.trim()) return;
-    setMessages((msgs) => [
-      ...msgs,
-      { from: "user", text: input },
-      { from: "ai", text: getAIResponse(input) },
-    ]);
-    setInput("");
-  }
-  if (!mounted) return null;
-  return (
-    <div className="w-full max-w-md sm:max-w-sm md:max-w-md bg-white/5 border border-purple-200/20 rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg mb-6 mx-auto">
-      <div className="mb-3 text-purple-200 font-semibold text-base sm:text-lg">AI Demo Chatbot</div>
-      <div className="h-40 sm:h-44 md:h-48 overflow-y-auto flex flex-col gap-2 mb-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        {messages.map((msg, i) => (
-          <div key={i} className={msg.from === "ai" ? "text-purple-200 text-left" : "text-white/90 text-right"}>
-            <span className="inline-block px-2 py-1 sm:px-3 sm:py-1.5 rounded-full bg-purple-400/10 border border-purple-200/10 mb-1 text-xs sm:text-sm break-words max-w-[90vw] sm:max-w-[80vw] md:max-w-[320px]">
-              {msg.text}
-            </span>
-          </div>
-        ))}
-      </div>
-      <form onSubmit={sendMessage} className="flex flex-col sm:flex-row gap-2">
-        <input
-          className="flex-1 rounded-full px-3 py-2 sm:px-4 sm:py-2 bg-black/60 border border-purple-200/20 text-white focus:outline-none text-sm sm:text-base"
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder="Ask about AI..."
-        />
-        <button type="submit" className="px-4 py-2 rounded-full bg-purple-400 text-black font-semibold shadow hover:bg-purple-300 transition text-xs sm:text-sm">
-          Send
-        </button>
-      </form>
-    </div>
-  );
-}
-
-function getAIResponse(input: string): string {
-  const text = input.toLowerCase();
-
-  // === INTENT DETECTION ===
-  const highIntentKeywords = [
-    "business",
-    "company",
-    "startup",
-    "agency",
-    "client",
-    "website",
-    "automation",
-    "leads",
-    "marketing",
-    "sales",
-    "ai chatbot",
-    "build",
-    "development"
-  ];
-
-  const lowIntentKeywords = [
-    "learn",
-    "what is",
-    "student",
-    "career",
-    "course",
-    "meaning",
-    "example"
-  ];
-
-  const isHighIntent = highIntentKeywords.some(word => text.includes(word));
-  const isLowIntent = lowIntentKeywords.some(word => text.includes(word));
-
-  // === GREETING / DEFAULT ===
-  if (
-    text.includes("hi") ||
-    text.includes("hello") ||
-    text.includes("hey")
-  ) {
-    return "Quick question — are you looking to grow your business or just exploring AI?";
-  }
-
-  // === HIGH INTENT FLOW ===
-  if (isHighIntent) {
-    if (text.includes("price") || text.includes("cost")) {
-      return "Pricing depends on your requirements. If you want, I can connect you with our team for a quick free consultation.";
-    }
-
-    if (text.includes("chatbot")) {
-      return "We build smart AI chatbots that convert visitors into leads using automation and intent-based logic. Want to use this for your business?";
-    }
-
-    if (text.includes("website")) {
-      return "AI-powered websites help capture and qualify leads 24/7. Would you like a quick strategy call to see how it fits your business?";
-    }
-
-    return "Sounds like you're working on a business goal. We help companies grow using AI automation, chatbots, and conversion-focused systems. Want a free consultation?";
-  }
-
-  // === LOW INTENT FLOW ===
-  if (isLowIntent) {
-    return "AI helps automate tasks, analyze data, and improve decision-making. If you ever want to apply this to a real business, let me know.";
-  }
-
-  // === FALLBACK ===
-  return "I can help with AI chatbots, automation, and business growth. Are you exploring or looking to implement this for a business?";
-}
 }
