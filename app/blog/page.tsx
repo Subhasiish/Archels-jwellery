@@ -68,7 +68,7 @@ export default function BlogPage() {
                   {post.title}
                 </h2>
                 <div className="text-xs text-purple-300 mb-4">{new Date(post.date).toLocaleDateString()}</div>
-                <p className="text-white/80 mb-4 line-clamp-3">{post.content}</p>
+                <p className="text-white/80 mb-4 line-clamp-3">{post.excerpt}</p>
               </div>
               <Link
                 href={`/blog/${post.slug}`}

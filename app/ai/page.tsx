@@ -137,13 +137,13 @@ export default function AIPage() {
 // Interactive AI Demo Chatbot (fun, not real AI)
 function AIDemoChatbot() {
   const [mounted, setMounted] = React.useState(false);
-  const [messages, setMessages] = React.useState([]);
+  const [messages, setMessages] = React.useState<{ from: string; text: string }[]>([]);
   const [input, setInput] = React.useState("");
   React.useEffect(() => {
     setMounted(true);
     setMessages([{ from: "ai", text: "Hi! I’m your AI assistant. Ask me anything about AI!" }]);
   }, []);
-  function sendMessage(e) {
+  function sendMessage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!input.trim()) return;
     setMessages((msgs) => [
@@ -181,7 +181,7 @@ function AIDemoChatbot() {
   );
 }
 
-function getAIResponse(input) {
+function getAIResponse(input: string) {
   // Fun, canned responses for demo
   const lower = input.toLowerCase();
   if (lower.includes("ml") || lower.includes("machine learning")) return "Machine learning lets computers learn from data!";
