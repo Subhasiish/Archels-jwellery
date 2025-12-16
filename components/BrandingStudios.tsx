@@ -64,7 +64,8 @@ export default function BrandingStudios() {
               </p>
             </div>
 
-            <motion.button
+            <motion.a
+              href="/branding"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -74,7 +75,7 @@ export default function BrandingStudios() {
               className="mt-8 inline-flex items-center justify-center rounded-full border border-white/60 bg-white text-black text-[11px] md:text-xs tracking-[0.18em] uppercase px-6 py-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.6)] hover:bg-orange-400 hover:border-orange-300 hover:text-black transition-colors"
             >
               Explore our services
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
       </div>

@@ -42,9 +42,11 @@ export default function Footer() {
         {/* RIGHT SECTION */}
         <div className="relative z-30 flex flex-col md:items-end gap-6 text-sm">
           <nav className="flex flex-col md:items-end gap-2">
-            <a className="text-black/80 hover:text-black underline-offset-4 hover:underline">Shuuvora Studios</a>
-            <a className="text-black/80 hover:text-black underline-offset-4 hover:underline">Shuuvora Times</a>
-            <a className="text-black/80 hover:text-black underline-offset-4 hover:underline">Shuuvora</a>
+            <a href="/" className="text-black/80 hover:text-black underline-offset-4 hover:underline">Home</a>
+            <a href="/about" className="text-black/80 hover:text-black underline-offset-4 hover:underline">About</a>
+            <a href="/blog" className="text-black/80 hover:text-black underline-offset-4 hover:underline">Blog</a>
+            <a href="/branding" className="text-black/80 hover:text-black underline-offset-4 hover:underline">Branding</a>
+            <a href="/ai" className="text-black/80 hover:text-black underline-offset-4 hover:underline">AI Solutions</a>
           </nav>
 
           <div className="flex flex-col md:items-end">

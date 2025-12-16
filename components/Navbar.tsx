@@ -46,14 +46,20 @@ export default function Navbar() {
             className="bg-black border-t border-gray-800"
           >
             <div className="px-6 py-4 space-y-4">
-              <a href="#home" className="block text-white hover:text-gray-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <a href="/" className="block text-white hover:text-gray-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 Home
               </a>
-              <a href="#about" className="block text-white hover:text-gray-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <a href="/about" className="block text-white hover:text-gray-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 About
               </a>
-              <a href="#features" className="block text-white hover:text-gray-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Features
+              <a href="/blog" className="block text-white hover:text-gray-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                Blog
+              </a>
+              <a href="/branding" className="block text-white hover:text-gray-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                Branding
+              </a>
+              <a href="/ai" className="block text-white hover:text-gray-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                AI Solutions
               </a>
               <button className="w-full px-6 py-2 bg-white text-black rounded-lg font-semibold border border-black">
                 SCHEDULE A CALL
