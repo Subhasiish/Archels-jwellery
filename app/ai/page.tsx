@@ -132,7 +132,6 @@ export default function AIPage() {
       </section>
     </main>
   );
-}
 
 // Interactive AI Demo Chatbot (fun, not real AI)
 function AIDemoChatbot() {
@@ -181,15 +180,71 @@ function AIDemoChatbot() {
   );
 }
 
-function getAIResponse(input: string) {
-  // Fun, canned responses for demo
-  const lower = input.toLowerCase();
-  if (lower.includes("ml") || lower.includes("machine learning")) return "Machine learning lets computers learn from data!";
-  if (lower.includes("chatbot")) return "Chatbots can automate support and boost engagement.";
-  if (lower.includes("predict")) return "Predictive AI can forecast trends and outcomes.";
-  if (lower.includes("vision")) return "Vision AI can recognize images, faces, and more.";
-  if (lower.includes("nlp") || lower.includes("language")) return "NLP helps computers understand human language.";
-  if (lower.includes("secure")) return "We build secure, privacy-first AI systems.";
-  if (lower.includes("data")) return "Data is the fuel for all great AI!";
-  return "That’s a great question! Our AI team would love to help you with that.";
+function getAIResponse(input: string): string {
+  const text = input.toLowerCase();
+
+  // === INTENT DETECTION ===
+  const highIntentKeywords = [
+    "business",
+    "company",
+    "startup",
+    "agency",
+    "client",
+    "website",
+    "automation",
+    "leads",
+    "marketing",
+    "sales",
+    "ai chatbot",
+    "build",
+    "development"
+  ];
+
+  const lowIntentKeywords = [
+    "learn",
+    "what is",
+    "student",
+    "career",
+    "course",
+    "meaning",
+    "example"
+  ];
+
+  const isHighIntent = highIntentKeywords.some(word => text.includes(word));
+  const isLowIntent = lowIntentKeywords.some(word => text.includes(word));
+
+  // === GREETING / DEFAULT ===
+  if (
+    text.includes("hi") ||
+    text.includes("hello") ||
+    text.includes("hey")
+  ) {
+    return "Quick question — are you looking to grow your business or just exploring AI?";
+  }
+
+  // === HIGH INTENT FLOW ===
+  if (isHighIntent) {
+    if (text.includes("price") || text.includes("cost")) {
+      return "Pricing depends on your requirements. If you want, I can connect you with our team for a quick free consultation.";
+    }
+
+    if (text.includes("chatbot")) {
+      return "We build smart AI chatbots that convert visitors into leads using automation and intent-based logic. Want to use this for your business?";
+    }
+
+    if (text.includes("website")) {
+      return "AI-powered websites help capture and qualify leads 24/7. Would you like a quick strategy call to see how it fits your business?";
+    }
+
+    return "Sounds like you're working on a business goal. We help companies grow using AI automation, chatbots, and conversion-focused systems. Want a free consultation?";
+  }
+
+  // === LOW INTENT FLOW ===
+  if (isLowIntent) {
+    return "AI helps automate tasks, analyze data, and improve decision-making. If you ever want to apply this to a real business, let me know.";
+  }
+
+  // === FALLBACK ===
+  return "I can help with AI chatbots, automation, and business growth. Are you exploring or looking to implement this for a business?";
+}
 }
