@@ -160,7 +160,7 @@ export default function AIDemoChatbot() {
       <div className="w-full max-w-md mb-4">
         <Link href="/ai" className="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium transition-colors bg-white rounded-full px-4 py-2 shadow">
           <svg className="h-5 w-5 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
-          Back to AI Solutions
+          Back
         </Link>
       </div>
       <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-purple-400/30 flex flex-col overflow-hidden">
