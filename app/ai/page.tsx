@@ -155,25 +155,25 @@ function AIDemoChatbot() {
   }
   if (!mounted) return null;
   return (
-    <div className="w-full max-w-md bg-white/5 border border-purple-200/20 rounded-2xl p-6 shadow-lg mb-6">
-      <div className="mb-3 text-purple-200 font-semibold text-lg">AI Demo Chatbot</div>
-      <div className="h-40 overflow-y-auto flex flex-col gap-2 mb-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+    <div className="w-full max-w-md sm:max-w-sm md:max-w-md bg-white/5 border border-purple-200/20 rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg mb-6 mx-auto">
+      <div className="mb-3 text-purple-200 font-semibold text-base sm:text-lg">AI Demo Chatbot</div>
+      <div className="h-40 sm:h-44 md:h-48 overflow-y-auto flex flex-col gap-2 mb-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {messages.map((msg, i) => (
-          <div key={i} className={msg.from === "ai" ? "text-purple-200" : "text-white/90 text-right"}>
-            <span className="inline-block px-3 py-1 rounded-full bg-purple-400/10 border border-purple-200/10 mb-1">
+          <div key={i} className={msg.from === "ai" ? "text-purple-200 text-left" : "text-white/90 text-right"}>
+            <span className="inline-block px-2 py-1 sm:px-3 sm:py-1.5 rounded-full bg-purple-400/10 border border-purple-200/10 mb-1 text-xs sm:text-sm break-words max-w-[90vw] sm:max-w-[80vw] md:max-w-[320px]">
               {msg.text}
             </span>
           </div>
         ))}
       </div>
-      <form onSubmit={sendMessage} className="flex gap-2">
+      <form onSubmit={sendMessage} className="flex flex-col sm:flex-row gap-2">
         <input
-          className="flex-1 rounded-full px-4 py-2 bg-black/60 border border-purple-200/20 text-white focus:outline-none"
+          className="flex-1 rounded-full px-3 py-2 sm:px-4 sm:py-2 bg-black/60 border border-purple-200/20 text-white focus:outline-none text-sm sm:text-base"
           value={input}
           onChange={e => setInput(e.target.value)}
           placeholder="Ask about AI..."
         />
-        <button type="submit" className="px-4 py-2 rounded-full bg-purple-400 text-black font-semibold shadow hover:bg-purple-300 transition text-sm">
+        <button type="submit" className="px-4 py-2 rounded-full bg-purple-400 text-black font-semibold shadow hover:bg-purple-300 transition text-xs sm:text-sm">
           Send
         </button>
       </form>
