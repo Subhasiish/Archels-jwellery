@@ -3,50 +3,76 @@
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
+import aiImage from './img/AI-image.webp'
+import nikeImage from './img/nike-image.jpg'
+import houseImage from './img/house-image.webp'
+import lampImage from './img/Lamp-image.jpg'
+import musicImage from './img/music-image.webp'
+import solarImage from './img/solar-image.webp'
+import amoterImage from './img/amoter-image.webp'
+import beaqueImage from './img/beaque-image.webp'
+import bertoozImage from './img/bertooz-image.webp'
+import blurImage from './img/blur-image.webp'
+import bwImage from './img/bw-image.webp'
+import chocolateImage from './img/chocolate-image.webp'
+import danceImage from './img/dance-image.webp'
+import derImage from './img/der-image.webp'
+import desklampImage from './img/desklamp-image.png'
+import downloadImage from './img/download.jpg'
+import exarciseImage from './img/exarcise-image.webp'
+import greenImage from './img/green-image.webp'
+import heroImage from './img/hero-image.webp'
+import heroexerciseImage from './img/heroexercise-image.webp'
+import homeImage from './img/home-image.webp'
+import jwelleryImage from './img/jwellery-image.webp'
+import lamptabImage from './img/lamptab-image.png'
+import laptopImage from './img/laptop-image.webp'
+import laptopheroImage from './img/laptophero-image.webp'
+import laptoplampImage from './img/laptoplamp-image.webp'
+import navelyImage from './img/navely-image.webp'
+import norvanImage from './img/norvan-image.webp'
+import orangeImage from './img/orange-image.webp'
+import organicImage from './img/organic-image.webp'
+import skincareImage from './img/skincare-image.webp'
+import symbolImage from './img/symbol-image.webp'
+import viImage from './img/vi-image.webp'
+import yellowImage from './img/yellow-image.webp'
 
 const projects = [
-  {
-    id: 1,
-    title: 'Architecture Innovation',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=800&fit=crop',
-    description: 'Shaping the Future of Architecture, Innovation in Every Structure.',
-    size: 'big' // big
-  },
-  {
-    id: 2,
-    title: 'Essentialize',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=800&fit=crop',
-    description: 'Minimalist luxury product showcase',
-    size: 'small' // small
-  },
-  {
-    id: 3,
-    title: 'StayScape',
-    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&h=800&fit=crop',
-    description: 'Unforgettable stays await on dream stays',
-    size: 'rectangle' // rectangle (wide)
-  },
-  {
-    id: 4,
-    title: 'Bobobox',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop',
-    description: 'Visitors about our cabin',
-    size: 'square' // square
-  },
-  {
-    id: 5,
-    title: 'Exclusive Travel',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=800&fit=crop',
-    description: 'Exclusive Travel, Designed with You in Mind',
-    size: 'small' // small
-  },
-  {
-    id: 6,
-    title: 'Bobobox Reviews',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop',
-    description: 'We Build More Than Homes - We Build Legacies',
-    size: 'big' // big
-  },
+  { id: 1, title: 'AI Innovation', image: aiImage, description: 'Shaping the Future of AI.', size: 'big' },
+  { id: 2, title: 'Nike Campaign', image: nikeImage, description: 'Minimalist luxury product showcase', size: 'small' },
+  { id: 3, title: 'Modern House', image: houseImage, description: 'Unforgettable stays await on dream stays', size: 'rectangle' },
+  { id: 4, title: 'Lamp Design', image: lampImage, description: 'Visitors about our cabin', size: 'square' },
+  { id: 5, title: 'Music Vibes', image: musicImage, description: 'Exclusive Travel, Designed with You in Mind', size: 'small' },
+  { id: 6, title: 'Solar Power', image: solarImage, description: 'We Build More Than Homes - We Build Legacies', size: 'big' },
+  { id: 7, title: 'Amoter', image: amoterImage, description: 'Amoter project description', size: 'rectangle' },
+  { id: 8, title: 'Beaque', image: beaqueImage, description: 'Beaque project description', size: 'square' },
+  { id: 9, title: 'Bertooz', image: bertoozImage, description: 'Bertooz project description', size: 'small' },
+  { id: 10, title: 'Blur', image: blurImage, description: 'Blur project description', size: 'big' },
+  { id: 11, title: 'Black & White', image: bwImage, description: 'BW project description', size: 'rectangle' },
+  { id: 12, title: 'Chocolate', image: chocolateImage, description: 'Chocolate project description', size: 'square' },
+  { id: 13, title: 'Dance', image: danceImage, description: 'Dance project description', size: 'small' },
+  { id: 14, title: 'Der', image: derImage, description: 'Der project description', size: 'big' },
+  { id: 15, title: 'Desk Lamp', image: desklampImage, description: 'Desk Lamp project description', size: 'rectangle' },
+  { id: 16, title: 'Download', image: downloadImage, description: 'Download project description', size: 'square' },
+  { id: 17, title: 'Exercise', image: exarciseImage, description: 'Exercise project description', size: 'small' },
+  { id: 18, title: 'Green', image: greenImage, description: 'Green project description', size: 'big' },
+  { id: 19, title: 'Hero', image: heroImage, description: 'Hero project description', size: 'rectangle' },
+  { id: 20, title: 'Hero Exercise', image: heroexerciseImage, description: 'Hero Exercise project description', size: 'square' },
+  { id: 21, title: 'Home', image: homeImage, description: 'Home project description', size: 'small' },
+  { id: 22, title: 'Jewellery', image: jwelleryImage, description: 'Jewellery project description', size: 'big' },
+  { id: 23, title: 'Lamp Tab', image: lamptabImage, description: 'Lamp Tab project description', size: 'rectangle' },
+  { id: 24, title: 'Laptop', image: laptopImage, description: 'Laptop project description', size: 'square' },
+  { id: 25, title: 'Laptop Hero', image: laptopheroImage, description: 'Laptop Hero project description', size: 'small' },
+  { id: 26, title: 'Laptop Lamp', image: laptoplampImage, description: 'Laptop Lamp project description', size: 'big' },
+  { id: 27, title: 'Navely', image: navelyImage, description: 'Navely project description', size: 'rectangle' },
+  { id: 28, title: 'Norvan', image: norvanImage, description: 'Norvan project description', size: 'square' },
+  { id: 29, title: 'Orange', image: orangeImage, description: 'Orange project description', size: 'small' },
+  { id: 30, title: 'Organic', image: organicImage, description: 'Organic project description', size: 'big' },
+  { id: 31, title: 'Skincare', image: skincareImage, description: 'Skincare project description', size: 'rectangle' },
+  { id: 32, title: 'Symbol', image: symbolImage, description: 'Symbol project description', size: 'square' },
+  { id: 33, title: 'VI', image: viImage, description: 'VI project description', size: 'small' },
+  { id: 34, title: 'Yellow', image: yellowImage, description: 'Yellow project description', size: 'big' },
 ]
 
 export default function Projects() {

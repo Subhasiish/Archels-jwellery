@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import aiImage from './img/AI-image.webp'
 
 const aiTags = [
   'Chatbot & Virtual Assistant Development',
@@ -116,11 +117,12 @@ export default function AISolutions() {
               <div className="relative rounded-[32px] overflow-hidden bg-black shadow-[0_32px_80px_rgba(0,0,0,0.7)] border border-white/10">
                 <div className="relative aspect-[4/5] w-full">
                   <Image
-                    src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=1200&h=1600&fit=crop"
+                    src={aiImage}
                     alt="AI interface on tablet"
                     fill
                     className="object-cover"
                     sizes="(max-width:768px) 100vw, 480px"
+                    priority
                   />
 
                   {/* Simple overlay text to echo reference layout */}

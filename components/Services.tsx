@@ -3,6 +3,42 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { useState } from 'react'
+import Image from 'next/image'
+
+import aiImage from './img/AI-image.webp'
+import amoterImage from './img/amoter-image.webp'
+import beaqueImage from './img/beaque-image.webp'
+import bertoozImage from './img/bertooz-image.webp'
+import blurImage from './img/blur-image.webp'
+import bwImage from './img/bw-image.webp'
+import chocolateImage from './img/chocolate-image.webp'
+import danceImage from './img/dance-image.webp'
+import derImage from './img/der-image.webp'
+import desklampImage from './img/desklamp-image.png'
+import downloadImage from './img/download.jpg'
+import exarciseImage from './img/exarcise-image.webp'
+import greenImage from './img/green-image.webp'
+import heroImage from './img/hero-image.webp'
+import heroexerciseImage from './img/heroexercise-image.webp'
+import homeImage from './img/home-image.webp'
+import houseImage from './img/house-image.webp'
+import jwelleryImage from './img/jwellery-image.webp'
+import lampImage from './img/Lamp-image.jpg'
+import lamptabImage from './img/lamptab-image.png'
+import laptopImage from './img/laptop-image.webp'
+import laptopheroImage from './img/laptophero-image.webp'
+import laptoplampImage from './img/laptoplamp-image.webp'
+import musicImage from './img/music-image.webp'
+import navelyImage from './img/navely-image.webp'
+import nikeImage from './img/nike-image.jpg'
+import norvanImage from './img/norvan-image.webp'
+import orangeImage from './img/orange-image.webp'
+import organicImage from './img/organic-image.webp'
+import skincareImage from './img/skincare-image.webp'
+import solarImage from './img/solar-image.webp'
+import symbolImage from './img/symbol-image.webp'
+import viImage from './img/vi-image.webp'
+import yellowImage from './img/yellow-image.webp'
 
 const services = [
   {
@@ -10,49 +46,49 @@ const services = [
     buttonText: 'WEB DESIGN / UIUX',
     title: 'Web Design / UIUX',
     description: 'At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don\'t just meet today\'s needs—they anticipate tomorrow\'s possibilities.',
-    image: '/images/web-design.jpg', // Placeholder - you'll need to add actual images
+    image: aiImage,
   },
   {
     id: 'mlm-1',
     buttonText: 'web-apps',
     title: 'MLM Solutions',
     description: 'At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don\'t just meet today\'s needs—they anticipate tomorrow\'s possibilities.',
-    image: '/images/mlm.jpg',
+    image: amoterImage,
   },
   {
     id: 'mlm-2',
     buttonText: 'SaaS',
     title: 'MLM Platform',
     description: 'At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don\'t just meet today\'s needs—they anticipate tomorrow\'s possibilities.',
-    image: '/images/mlm-2.jpg',
+    image: beaqueImage,
   },
   {
     id: 'mlm-3',
     buttonText: 'Application Development',
     title: 'SEO Services',
     description: 'At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don\'t just meet today\'s needs—they anticipate tomorrow\'s possibilities.',
-    image: '/images/seo.jpg',
+    image: bertoozImage,
   },
   {
     id: 'mlm-4',
     buttonText: 'ERP, CRM, MIS',
     title: 'MLM Development',
     description: 'At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don\'t just meet today\'s needs—they anticipate tomorrow\'s possibilities.',
-    image: '/images/mlm-3.jpg',
+    image: blurImage,
   },
   {
     id: 'mlm-5',
     buttonText: 'AI/ML',
     title: 'MLM Consulting',
     description: 'At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don\'t just meet today\'s needs—they anticipate tomorrow\'s possibilities.',
-    image: '/images/mlm-4.jpg',
+    image: bwImage,
   },
   {
     id: 'mlm-6',
     buttonText: 'MLM',
     title: 'MLM Strategy',
     description: 'At Shuuvora Tech, we are a collective of passionate technologists, designers, and strategists who believe in the transformative power of innovation. Founded on the principle that technology should enhance human experiences, we create digital solutions that don\'t just meet today\'s needs—they anticipate tomorrow\'s possibilities.',
-    image: '/images/mlm-5.jpg',
+    image: chocolateImage,
   },
 ]
 
@@ -158,71 +194,15 @@ export default function Services() {
               {/* Tablet Frame */}
               <div className="relative bg-gray-800 rounded-2xl p-3 md:p-4 shadow-2xl">
                 {/* Tablet Screen */}
-                <div className="relative bg-black rounded-lg overflow-hidden aspect-[4/3]">
-                  {/* Tablet Interface - Web Design Preview */}
-                  {selectedService.id === 'web-design' ? (
-                    <div className="w-full h-full bg-black p-4 md:p-6 flex flex-col">
-                      {/* Header */}
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="text-white text-lg md:text-xl font-bold">VELMORA</div>
-                        <div className="flex items-center space-x-4 text-white text-xs md:text-sm">
-                          <span>Home</span>
-                          <span>About Us</span>
-                          <span>Products</span>
-                          <span>Help Center</span>
-                          <button className="bg-white/10 px-3 py-1 rounded">Sign In</button>
-                        </div>
-                      </div>
-                      
-                      {/* Main Content */}
-                      <div className="flex-1 flex flex-col justify-center relative">
-                        {/* MORA LAMP Text with Lamp Illustration */}
-                        <div className="relative mb-8">
-                          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                            MORA LAMP
-                          </h1>
-                          {/* Lamp Illustration Overlay */}
-                          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
-                            <div className="relative">
-                              {/* Lamp Base */}
-                              <div className="w-16 h-32 bg-gray-700 rounded-t-full"></div>
-                              {/* Lamp Shade with Glow */}
-                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-24 h-24 bg-yellow-400/30 rounded-full blur-xl"></div>
-                              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 bg-yellow-300 rounded-full"></div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Order Now Button */}
-                        <button className="bg-yellow-400 text-black px-6 py-2 rounded-lg font-semibold w-fit mb-6">
-                          Order Now
-                        </button>
-                        
-                        {/* Bottom Section */}
-                        <div className="flex justify-between items-end">
-                          <p className="text-white text-sm md:text-base">
-                            Elevate your space with elegance and smart technology.
-                          </p>
-                          <div className="flex flex-col space-y-2 text-right">
-                            <div className="text-white text-xs">Smart Light Control</div>
-                            <div className="text-white text-xs">Voice Control Support</div>
-                            <div className="text-white text-xs">Login Platform With Alexa</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                      <div className="text-center p-8">
-                        <div className="text-white text-2xl md:text-3xl font-bold mb-4">
-                          {selectedService.title}
-                        </div>
-                        <div className="text-gray-400 text-sm">
-                          Service Preview
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                <div className="relative bg-black rounded-lg overflow-hidden aspect-[4/3] flex items-center justify-center">
+                  <Image
+                    src={selectedService.image}
+                    alt={selectedService.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
                 </div>
               </div>
             </div>

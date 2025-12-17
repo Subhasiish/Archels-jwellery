@@ -11,6 +11,8 @@ const AI_API_URL = "/api/chat";
 type Message = {
   from: "user" | "ai";
   text: string;
+  options?: string[];
+  optionSelected?: string;
 };
 
 type Stage =
@@ -20,53 +22,92 @@ type Stage =
   | "cta_asked"
   | "lead_captured";
 
+
+// Option logic for each stage
+const stageOptions: Record<Stage, string[] | undefined> = {
+  start: ["Business", "Learning", "Other"],
+  qualified: ["Tell me about AI for business", "Explain AI basics", "Show examples"],
+  pitched: ["Yes, I want a consultation", "Show me case studies", "No, just browsing"],
+  cta_asked: ["Yes", "No", "Maybe later"],
+  lead_captured: undefined,
+};
+
+const responseMap: Record<Stage, Record<string, string>> = {
+  start: {
+    Business: "Great! What kind of business are you in?",
+    Learning: "Awesome! Are you interested in AI for personal growth or future projects?",
+    Other: "No problem! Let me know how I can help you with AI.",
+  },
+  qualified: {
+    "Tell me about AI for business": "AI can automate tasks, analyze data, and improve customer engagement. What area interests you most?",
+    "Explain AI basics": "AI is about building systems that can learn, reason, and solve problems. Would you like a simple example?",
+    "Show examples": "Sure! For example, chatbots, recommendation engines, and image recognition are all AI-powered.",
+  },
+  pitched: {
+    "Yes, I want a consultation": "Great 👍 Please share your email or WhatsApp number and our team will reach out.",
+    "Show me case studies": "We have helped e-commerce, healthcare, and finance companies boost efficiency with AI. Want details on a specific industry?",
+    "No, just browsing": "No worries! If you want examples or have questions, I’m here.",
+  },
+  cta_asked: {
+    Yes: "Awesome! Please share your contact details and we’ll get in touch.",
+    No: "All good! If you want to explore more, just ask.",
+    "Maybe later": "Sure, reach out anytime you’re ready.",
+  },
+  lead_captured: {},
+};
+
 function fallbackResponse(
   input: string,
   stage: Stage,
-  setStage: (s: Stage) => void
-): string {
+  setStage: (s: Stage) => void,
+  lastOption?: string
+): { text: string; options?: string[] } {
   const text = input.toLowerCase();
 
   // Lead capture
   if (text.includes("@") || /\d{10}/.test(text)) {
     setStage("lead_captured");
-    return "Thanks! ✅ Our team will contact you shortly.";
+    return { text: "Thanks! ✅ Our team will contact you shortly." };
   }
 
-  if (stage === "start") {
-    setStage("qualified");
-    return "Hi 👋 Are you exploring AI for a business or just learning?";
+  // If user selected an option, respond accordingly
+  if (lastOption && responseMap[stage] && responseMap[stage][lastOption]) {
+    // Progress stage if needed
+    if (stage === "start") setStage("qualified");
+    if (stage === "qualified") setStage("pitched");
+    if (stage === "pitched") setStage("cta_asked");
+    if (stage === "cta_asked") setStage("lead_captured");
+    return { text: responseMap[stage][lastOption], options: stageOptions[(stage === "cta_asked") ? "lead_captured" : (Object.keys(stageOptions)[Object.keys(stageOptions).indexOf(stage) + 1] as Stage)] };
   }
 
-  if (stage === "qualified") {
-    if (/business|company|startup|agency/.test(text)) {
-      setStage("pitched");
-      return "Got it. We help businesses convert website visitors into real leads using AI assistants.";
+  // Default stage-based response
+  if (stageOptions[stage]) {
+    let prompt = "";
+    switch (stage) {
+      case "start":
+        setStage("qualified");
+        prompt = "Hi 👋 Are you exploring AI for a business or just learning?";
+        break;
+      case "qualified":
+        prompt = "What would you like to know about AI?";
+        break;
+      case "pitched":
+        prompt = "Would you like a free consultation to see how this would work for your business?";
+        break;
+      case "cta_asked":
+        prompt = "Would you like to proceed with a free consultation?";
+        break;
+      default:
+        prompt = "How can I help you further?";
     }
-    return "No problem. I can explain AI basics or help when you're ready to apply this to a business.";
-  }
-
-  if (stage === "pitched") {
-    setStage("cta_asked");
-    return "Would you like a free consultation to see how this would work for your business?";
-  }
-
-  if (stage === "cta_asked") {
-    if (text === "yes" || text.includes("sure")) {
-      setStage("lead_captured");
-      return "Great 👍 Please share your email or WhatsApp number and our team will reach out.";
-    }
-    if (text === "no") {
-      return "No worries. If you want examples or have questions, I’m here.";
-    }
-    return "Just let me know if you’d like a free consultation.";
+    return { text: prompt, options: stageOptions[stage] };
   }
 
   if (stage === "lead_captured") {
-    return "You’re all set 👍 Our team will contact you soon.";
+    return { text: "You’re all set 👍 Our team will contact you soon." };
   }
 
-  return "How can I help you further?";
+  return { text: "How can I help you further?" };
 }
 
 async function streamText(
@@ -86,6 +127,7 @@ export default function AIDemoChatbot() {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [stage, setStage] = useState<Stage>("start");
+  const [pendingOptions, setPendingOptions] = useState<string[] | undefined>(undefined);
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
@@ -124,7 +166,7 @@ export default function AIDemoChatbot() {
     setMessages(m => [...m, { from: "user", text: userText }]);
     setTyping(true);
 
-    let response = "";
+    let responseObj: { text: string; options?: string[] };
 
     if (USE_AI) {
       try {
@@ -133,24 +175,44 @@ export default function AIDemoChatbot() {
           body: JSON.stringify({ messages }),
         });
         const data = await res.json();
-        response = data.reply;
+        responseObj = { text: data.reply };
       } catch {
-        response = fallbackResponse(userText, stage, setStage);
+        responseObj = fallbackResponse(userText, stage, setStage);
       }
     } else {
-      response = fallbackResponse(userText, stage, setStage);
+      responseObj = fallbackResponse(userText, stage, setStage);
     }
 
     setMessages(m => [...m, { from: "ai", text: "" }]);
+    setPendingOptions(responseObj.options);
 
-    await streamText(response, partial => {
+    await streamText(responseObj.text, partial => {
       setMessages(m => {
         const updated = [...m];
-        updated[updated.length - 1] = { from: "ai", text: partial };
+        updated[updated.length - 1] = { ...updated[updated.length - 1], text: partial, options: responseObj.options };
         return updated;
       });
     });
 
+    setTyping(false);
+  }
+
+  // Handle option click
+  async function handleOption(option: string) {
+    setMessages(m => [...m, { from: "user", text: option, optionSelected: option }]);
+    setTyping(true);
+
+    let responseObj = fallbackResponse(option, stage, setStage, option);
+    setPendingOptions(responseObj.options);
+
+    setMessages(m => [...m, { from: "ai", text: "" }]);
+    await streamText(responseObj.text, partial => {
+      setMessages(m => {
+        const updated = [...m];
+        updated[updated.length - 1] = { ...updated[updated.length - 1], text: partial, options: responseObj.options };
+        return updated;
+      });
+    });
     setTyping(false);
   }
 
@@ -171,7 +233,7 @@ export default function AIDemoChatbot() {
         {/* Messages */}
         <div className="flex-1 p-2 sm:p-4 overflow-y-auto space-y-3 text-base h-72 sm:h-80 bg-white scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {messages.map((m, i) => (
-            <div key={i} className={`flex ${m.from === "user" ? "justify-end" : "justify-start"}`}>
+            <div key={i} className={`flex flex-col gap-1 ${m.from === "user" ? "items-end" : "items-start"}`}>
               <span
                 className={`px-4 py-2 rounded-2xl max-w-[80%] shadow-md ${
                   m.from === "user"
@@ -181,6 +243,21 @@ export default function AIDemoChatbot() {
               >
                 {m.text}
               </span>
+              {/* Render options if this is the last AI message and options exist */}
+              {m.from === "ai" && m.options && i === messages.length - 1 && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {m.options.map(option => (
+                    <button
+                      key={option}
+                      onClick={() => handleOption(option)}
+                      className="px-3 py-1 rounded-full border border-purple-400 text-purple-700 bg-white hover:bg-purple-100 text-xs font-semibold shadow transition"
+                      disabled={typing}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
           {typing && (

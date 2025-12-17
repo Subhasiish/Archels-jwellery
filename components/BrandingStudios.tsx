@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import brandingImage from './img/beaque-image.webp'
 
 export default function BrandingStudios() {
   return (
@@ -23,11 +24,12 @@ export default function BrandingStudios() {
               <div className="relative rounded-[32px] overflow-hidden bg-black shadow-[0_28px_70px_rgba(0,0,0,0.8)] border border-white/10">
                 <div className="relative aspect-[4/5] w-full">
                   <Image
-                    src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?w=1200&h=1600&fit=crop"
+                    src={brandingImage}
                     alt="Branding design on tablet"
                     fill
                     className="object-cover"
                     sizes="(max-width:768px) 100vw, 420px"
+                    priority
                   />
                   {/* Subtle vignette */}
                   <div className="absolute inset-0 bg-black/25" />
