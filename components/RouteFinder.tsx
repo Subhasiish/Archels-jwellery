@@ -134,8 +134,13 @@ export default function HospitalRouteMap() {
 
       map.addSource("route", {
         type: "geojson",
-        data: { type: "Feature", geometry: route.geometry },
+        data: {
+          type: "Feature",
+          properties: {}, // REQUIRED
+          geometry: route.geometry,
+        },
       });
+
       map.addLayer({
         id: "route",
         type: "line",
