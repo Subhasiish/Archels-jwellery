@@ -77,14 +77,15 @@ export default function AIPage() {
           We build intelligent, scalable, and secure AI systems that help you automate, predict, and grow. Our team blends deep learning, NLP, and automation to deliver real business value.
         </motion.p>
 
-        {/* Interactive AI Demo */}
+        {/* Interactive AI Demo & Route Finder */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.7 }}
-          className="mb-12 w-full flex flex-col items-center"
+          className="mb-12 w-full flex flex-col items-center gap-4"
         >
           <Link href="/ai/chatbot" className="inline-block px-6 py-3 rounded-full border border-purple-400 text-purple-300 bg-black/40 hover:bg-purple-400 hover:text-black font-semibold text-lg shadow transition-colors">Try our AI Chatbot Demo →</Link>
+          <Link href="/ai/route-finder" className="inline-block px-6 py-3 rounded-full border border-green-400 text-green-300 bg-black/40 hover:bg-green-400 hover:text-black font-semibold text-lg shadow transition-colors">Smart Location & Route Finder →</Link>
         </motion.div>
 
         {/* Services grid */}
