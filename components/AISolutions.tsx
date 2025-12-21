@@ -97,7 +97,7 @@ export default function AISolutions() {
               whileTap={{ scale: 0.97 }}
               className="mt-8 inline-flex items-center justify-center px-6 py-3 rounded-full border border-white text-xs md:text-sm tracking-[0.18em] uppercase text-white bg-transparent hover:bg-white hover:text-black transition-colors"
             >
-              Book a free consultation
+              Explore Our AI Solutions
             </motion.a>
           </div>
 
