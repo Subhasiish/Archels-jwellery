@@ -86,6 +86,15 @@ export default function AIPage() {
         >
           <Link href="/ai/chatbot" className="inline-block px-6 py-3 rounded-full border border-purple-400 text-purple-300 bg-black/40 hover:bg-purple-400 hover:text-black font-semibold text-lg shadow transition-colors">Try our AI Chatbot Demo →</Link>
           <Link href="/ai/route-finder" className="inline-block px-6 py-3 rounded-full border border-green-400 text-green-300 bg-black/40 hover:bg-green-400 hover:text-black font-semibold text-lg shadow transition-colors">Smart Location & Route Finder →</Link>
+          <Link
+  href="https://orbital-canvas.vercel.app/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block px-6 py-3 rounded-full border border-green-400 text-green-300 bg-black/40 hover:bg-green-400 hover:text-black font-semibold text-lg shadow transition-colors"
+>
+  AI Gesture Control →
+</Link>
+
         </motion.div>
 
         {/* Services grid */}
